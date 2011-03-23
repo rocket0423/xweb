@@ -1,4 +1,6 @@
 Xweb::Application.routes.draw do
+  resources :categories
+
   get "admin/index"
 
   get "sessions/new"
