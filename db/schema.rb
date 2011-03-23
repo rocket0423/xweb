@@ -10,6 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110311003921) do
 
   create_table "categories", :force => true do |t|
@@ -18,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20110311003921) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+=======
+ActiveRecord::Schema.define(:version => 20110309235436) do
+>>>>>>> 642cd1f9ddbace8a361b8a7a801fa5929cf3d8c0
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -25,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20110311003921) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "administrator"
   end
 
 end
