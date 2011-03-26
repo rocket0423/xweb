@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  subcategories_id: 1
+  word: MyString
+  hint: MyString
+  points: 1
+
+two:
+  subcategories_id: 1
+  word: MyString
+  hint: MyString
+  points: 1

@@ -1,0 +1,7 @@
+<h1>List of Sub-Categories</h1>
+
+<select name="subDrop" id="subSelect" size="5" multiple="multiple">
+<% @subcategories.each do |subcategory| %>  
+	<option><%= subcategory.subcategory %></option>
+<% end %>
+</select>

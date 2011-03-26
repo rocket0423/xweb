@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :catid %><br />
+    <%= f.text_field :catid %>
+  </div>
+  <div class="field">
     <%= f.label :category %><br />
     <%= f.text_field :category %>
   </div>

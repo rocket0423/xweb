@@ -10,18 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110311003921) do
+ActiveRecord::Schema.define(:version => 20110326093059) do
 
   create_table "categories", :force => true do |t|
     t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subcategories", :force => true do |t|
+    t.integer  "categories_id"
     t.string   "subcategory"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-=======
-ActiveRecord::Schema.define(:version => 20110309235436) do
->>>>>>> 642cd1f9ddbace8a361b8a7a801fa5929cf3d8c0
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -30,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20110309235436) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "administrator"
+  end
+
+  create_table "words", :force => true do |t|
+    t.integer  "subcategories_id"
+    t.string   "word"
+    t.string   "hint"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
