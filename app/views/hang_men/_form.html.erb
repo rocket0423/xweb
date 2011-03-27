@@ -1,0 +1,45 @@
+<%= form_for(@hang_man) do |f| %>
+  <% if @hang_man.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hang_man.errors.count, "error") %> prohibited this hang_man from being saved:</h2>
+
+      <ul>
+      <% @hang_man.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hang1_url %><br />
+    <%= f.text_field :hang1_url %>
+  </div>
+  <div class="field">
+    <%= f.label :hang2_url %><br />
+    <%= f.text_field :hang2_url %>
+  </div>
+  <div class="field">
+    <%= f.label :hang3_url %><br />
+    <%= f.text_field :hang3_url %>
+  </div>
+  <div class="field">
+    <%= f.label :hang4_url %><br />
+    <%= f.text_field :hang4_url %>
+  </div>
+  <div class="field">
+    <%= f.label :hang5_url %><br />
+    <%= f.text_field :hang5_url %>
+  </div>
+  <div class="field">
+    <%= f.label :hang6_url %><br />
+    <%= f.text_field :hang6_url %>
+  </div>
+  <div class="field">
+    <%= f.label :hang7_url %><br />
+    <%= f.text_field :hang7_url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

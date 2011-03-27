@@ -1,32 +1,25 @@
 class UsersController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :authorize, :only => [:new, :create, :destroy]
+  skip_before_filter :authorizeAdministrator, :only => [:new, :create, :destroy]
   # GET /users
   # GET /users.xml
   def index
-    if User.find_by_id(session[:user_id])
-      @users = User.all
-      
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @users }
-      end
-    else
-      redirect_to login_url, :notice => "Please log in"
+    @users = User.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @users }
     end
   end
   
   # GET /users/1
   # GET /users/1.xml
   def show
-    if User.find_by_id(session[:user_id])
-      @user = User.find(params[:id])
-      
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml  { render :xml => @user }
-      end
-    else
-      redirect_to login_url, :notice => "Please log in"
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @user }
     end
   end
   
@@ -43,17 +36,16 @@ class UsersController < ApplicationController
   
   # GET /users/1/edit
   def edit
-    if User.find_by_id(session[:user_id])
-      @user = User.find(params[:id])
-    else
-      redirect_to login_url, :notice => "Please log in"
-    end
+    @user = User.find(params[:id])
   end
   
   # POST /users
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @user.administrator = false
+    @user.active = "11111111111111111111111111"
+    @user.active2 = "11111111111111111111111111"
     
     respond_to do |format|
       if @user.save
@@ -69,41 +61,33 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    if User.find_by_id(session[:user_id])
-      @user = User.find(params[:id])
-      
-      respond_to do |format|
-        if @user.update_attributes(params[:user])
-          format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-          format.xml  { head :ok }
-        else
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        end
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
-    else
-      redirect_to login_url, :notice => "Please log in"
     end
   end
   
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    if User.find_by_id(session[:user_id])
-      @user = User.find(params[:id])
-      begin
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.administrator && User.find_all_by_administrator(true).count==1
+        format.html { redirect_to(users_url, :notice => 'Unable to delete last admin') }
+        format.xml  { head :ok }
+      else
         @user.destroy
-        flash[:notice] = "User #{@user.name} deleted"
-      rescue Exception => e
-        flash[:notice] = e.message
-      end
-      
-      respond_to do |format|
-        format.html { redirect_to(users_url) }
+        format.html { redirect_to(users_url, :notice => 'User was successfully deleted') }
         format.xml  { head :ok }
       end
-    else
-      redirect_to login_url, :notice => "Please log in"
+       
     end
   end
 end
