@@ -23,8 +23,6 @@
         </div>
     </fieldset>
 	<% end %>
-	<form action='users/new' method='get'>
-		<button type='submit' >New User</button>		
-	</form>
+	<%= button_to 'New User', new_user_path %>
 	
 </div>

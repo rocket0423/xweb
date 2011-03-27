@@ -10,10 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326093059) do
+ActiveRecord::Schema.define(:version => 20110326231610) do
 
   create_table "categories", :force => true do |t|
     t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hang_men", :force => true do |t|
+    t.string   "hang1_url"
+    t.string   "hang2_url"
+    t.string   "hang3_url"
+    t.string   "hang4_url"
+    t.string   "hang5_url"
+    t.string   "hang6_url"
+    t.string   "hang7_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +44,10 @@ ActiveRecord::Schema.define(:version => 20110326093059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "administrator"
+    t.string   "active"
+    t.string   "active2"
+    t.integer  "hangman_id"
+    t.integer  "word_id"
   end
 
   create_table "words", :force => true do |t|

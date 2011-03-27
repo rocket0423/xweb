@@ -1,0 +1,35 @@
+<h1>Listing hang_men</h1>
+
+<table>
+  <tr>
+    <th>Hang1 url</th>
+    <th>Hang2 url</th>
+    <th>Hang3 url</th>
+    <th>Hang4 url</th>
+    <th>Hang5 url</th>
+    <th>Hang6 url</th>
+    <th>Hang7 url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hang_men.each do |hang_man| %>
+  <tr>
+    <td><%= hang_man.hang1_url %></td>
+    <td><%= hang_man.hang2_url %></td>
+    <td><%= hang_man.hang3_url %></td>
+    <td><%= hang_man.hang4_url %></td>
+    <td><%= hang_man.hang5_url %></td>
+    <td><%= hang_man.hang6_url %></td>
+    <td><%= hang_man.hang7_url %></td>
+    <td><%= link_to 'Show', hang_man %></td>
+    <td><%= link_to 'Edit', edit_hang_man_path(hang_man) %></td>
+    <td><%= link_to 'Destroy', hang_man, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Hang man', new_hang_man_path %>
