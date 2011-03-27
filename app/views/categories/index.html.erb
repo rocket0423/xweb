@@ -1,9 +1,9 @@
-<h1 align="center">List of categories</h1>
+<h1 align="center">Select a category...</h1>
 <p align="center">
 <form name="cats">
 <select name="catDrop" id="catSelect" size="5" onchange="selID();">
 <% @categories.each do |category| %>  
-	<option><%= category.category %></option>
+	<option value = '<%= category.id %>' ><%= category.category %></option>
 <% end %>
 </select>
 </form>
@@ -14,8 +14,8 @@ function selID(){
 	var x = document.getElementById("catSelect");
 	var i = x.selectedIndex;
 	var selection = x[i].text;
-		
-	return selection;
+	var selid = x[i].value;
+	document.getElementById("SelectCat").value = selid;
 }
 </script>
 
@@ -25,6 +25,6 @@ function selID(){
 
 <p align="center">
 <form action = 'subcategories' method='get'>
-	<button  id = 'SelectCat' type='submit' value='5'>Select</button>
+	<button  id = 'SelectCat' name='myCat'  type='submit'>Select</button>
 </form>
 </p>

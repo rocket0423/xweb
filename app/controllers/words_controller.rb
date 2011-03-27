@@ -3,7 +3,8 @@ class WordsController < ApplicationController
   # GET /words.xml
   def index
     @words = Word.all
-
+    @words_by_sub = Word.find_all_by_subcategories_id(params[:mySub]);
+        
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @words }
