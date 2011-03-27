@@ -1,10 +1,10 @@
 Xweb::Application.routes.draw do
-<<<<<<< HEAD
+  resources :words
+
+  resources :subcategories
+
   resources :categories
 
-  get "admin/index"
-
-=======
   get 'admin' => 'admin#index'
   
   controller :sessions do
@@ -13,7 +13,6 @@ Xweb::Application.routes.draw do
     delete 'logout' => :destroy
   end
   
->>>>>>> 642cd1f9ddbace8a361b8a7a801fa5929cf3d8c0
   get "sessions/new"
   
   get "sessions/create"
@@ -21,7 +20,9 @@ Xweb::Application.routes.draw do
   get "sessions/destroy"
   
   resources :users
-  
+
+  resources :categories  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
