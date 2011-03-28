@@ -1,0 +1,39 @@
+<h1 align="center">Select a category...</h1>
+<p align="center">
+<form name="cats">
+<select name="catDrop" id="catSelect" size="5" onchange="selID();">
+<% @categories.each do |category| %>  
+	<option value = '<%= category.id %>' ><%= category.category %></option>
+<% end %>
+</select>
+</form>
+
+<script type="text/javascript">
+
+function selID(){
+	var x = document.getElementById("catSelect");
+	var i = x.selectedIndex;
+	var selection = x[i].text;
+	var selid = x[i].value;
+	document.getElementById("SelectCat").value = selid;
+}
+</script>
+
+</p>
+
+<br />
+
+<p align="center">
+<form action = 'subcategories' method='get'>
+	<button  id = 'SelectCat' name='myCat'  type='submit'>Select</button>
+</form>
+</p>
+<br />
+<select name="test" id="t1" size="5"> 
+</select>
+
+<% @categories.each do |category| %>
+<script type="text/javascript">
+		document.getElementById("t1").add(new Option("<%= category.category %>","<%= category.id %>"));
+</script>
+<% end %>

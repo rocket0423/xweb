@@ -4,7 +4,8 @@ class WordsController < ApplicationController
   def index
     @words = Word.all
     @words_by_sub = Word.find_all_by_subcategories_id(params[:mySub]);
-        
+    @rand = Word.find_all_by_subcategories_id(params[:mySub], :order => "RANDOM()", :limit => 1);
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @words }
