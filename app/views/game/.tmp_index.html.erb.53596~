@@ -4,7 +4,7 @@
 		<form action='game' method='post'>
 			<table>
 				<tr>
-        			<td><img id="myImage" src ="/images/hangman1/533hangman-step1.jpg" alt = "HangMan"  width="150" height="200"  /></td>
+        			<td><img id="myImage" src ="/images/hangman1/533hangman-step1.jpg" alt = "HangMan"  width="225" height="300"  /></td>
         			<td>
         				<button id="hint" name= 'buttonClicked' type='submit' value="26">Hint</button>
 						<br />

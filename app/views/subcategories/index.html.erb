@@ -1,52 +1,27 @@
-<html>
-    <head>
-        <title>SubCategories</title>
-        <script language="javascript">
-            function addOption(selectbox, text, value){
-                var optn = document.createElement("OPTION");
-                optn.text = text;
-                optn.value = value;
-                selectbox.options.add(optn);
-            }
-            
-            function addOption_list(){
-				//document.write( " <% Category.all.each do |category| %> " )
-                addOption(document.drop_list.Cat, "<%= category.category %>", "<%= category.id %>");
-                //document.write( " <% end %> ")
-            }
-            
-            function selCat(){
-                var cat1 = document.getElementById("Cat")
-				var subcat1 = document.getElementById("SubCat")
-                var catI = cat1.selectedIndex
-				var catSelId = cat1[catI].value;
-                for (var r = subcat1.options.length - 1; r >= 0; r--) {
-                    subcat1.remove(r)
-                }
-				
-				//document.write( " <% Subcategory.all.each do |subcategory| %> " )
-					if("<%= subcategory.categories_id %>" == catSelId){
-						addOption(document.drop_list.SubCat, "<%= subcategory.subcategory %>", "<%= subcategory.id %>");
-					}
-                //document.write( " <% end %> ")
-            }
-        </script>
-    </head>
-    <body onload="addOption_list()";>
-        <h1 align="center">Select a subcategory</h1>
-        <p id="hintPhrase">
-            Guess What
-        </p>
-        <FORM name="drop_list" action="yourpage.php" method="POST">
-        Categories
-        <br/>
-        <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();">
-        </SELECT>
-        <br/>
-        SubCategories
-        <br/>
-        <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();">
-        </SELECT>
-        </form>
-    </body>
-</html>
+<h1>Listing SubCategories</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>SubCategory</th>
+    <th>Category ID</th>
+	<th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subcategories.each do |subcategory| %>
+  <tr>
+    <td><%= subcategory.id %></td>
+    <td><%= subcategory.subcategory %></td>
+	<td><%= subcategory.categories_id %></td>
+    <td><%= link_to 'Show', subcategory %></td>
+    <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
+    <td><%= link_to 'Destroy', subcategory, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sub Category', new_subcategory_path %>

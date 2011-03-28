@@ -1,32 +1,25 @@
-<h1 align="center">List of categories</h1>
-<p id="hintPhrase">Guess What</p>
-<p align="center">
-<form name="cats">
-<select name="catDrop" id="catSelect" size="5" onchange="selID();">
-<% @categories.each do |category| %>  
-	<option><%= category.category %></option>
+<h1>Listing Categories</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.category %></td>
+    <td><%= link_to 'Show', category %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
 <% end %>
-</select>
-</form>
-
-<script type="text/javascript">
-
-function selID(){
-	
-	var x = document.getElementById("catSelect");
-	var i = x.selectedIndex;
-	var selection = x[i].text;
-	document.getElementById("hintPhrase").innerHTML=selection	
-	return selection;
-}
-</script>
-
-</p>
+</table>
 
 <br />
 
-<p align="center">
-<form action = 'subcategories' method='get'>
-	<button  id = 'SelectCat' type='submit' value='5'>Select</button>
-</form>
-</p>
+<%= link_to 'New Category', new_category_path %>

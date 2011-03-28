@@ -51,8 +51,6 @@ class UsersController < ApplicationController
     else
       @user = User.new(params[:user])
       @user.administrator = false
-      @user.active = "11111111111111111111111111"
-      @user.active2 = "11111111111111111111111111"
       
       if @user.save
         if !User.find_by_id(session[:user_id])

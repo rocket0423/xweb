@@ -9,7 +9,7 @@
     <body id="">
         <div id="banner">
             <!--<%= image_tag("/images/wallpaper-400.gif")  %>-->
-			<img src = "/images/wallpaper-400.gif" width = "60" height = "45"
+			<img src = "/images/wallpaper-400.gif" width = "80" height = "60"
                alt = "hangman" /> 
             <%= @page_title || "Hangman" %><!-- <label id="code.depot.e.title"/> -->
         </div>
