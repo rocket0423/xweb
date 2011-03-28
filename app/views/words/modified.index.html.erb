@@ -1,0 +1,41 @@
+<h1>All words from your subcategory</h1>
+
+
+<table>
+  <tr>
+	<th>Subcategory ID</th>
+    <th>Word</th>
+    <th>Hint</th>
+    <th>Points</th>
+  </tr>
+
+<% @words_by_sub.each do |word| %>
+  <tr>
+    <td><%= word.subcategories_id %></td>
+	<td><%= word.word %></td>
+    <td><%= word.hint %></td>
+    <td><%= word.points %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<h1>Your random word...</h1>
+<br />
+<table>
+	<tr>
+		<th>Subcategory ID</th>
+    	<th>Word</th>
+    	<th>Hint</th>
+    	<th>Points</th>
+  	</tr>
+<% @rand.each do |rand| %>
+  <tr>
+    <td><%= rand.subcategories_id %></td>
+	<td><%= rand.word %></td>
+    <td><%= rand.hint %></td>
+    <td><%= rand.points %></td>
+  </tr>
+<% end %>
+</table>

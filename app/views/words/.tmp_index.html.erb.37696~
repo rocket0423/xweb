@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>ID</th>
-	<th>Subcategories ID</th>
+	<th>Subcategories</th>
     <th>Word</th>
     <th>Hint</th>
     <th>Points</th>

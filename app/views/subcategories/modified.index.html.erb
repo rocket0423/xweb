@@ -1,0 +1,22 @@
+<h1 align="center">Select a subcategory...</h1>
+<select name="subDrop" id="subSelect" size="5" onchange="selSub();">
+<% @sub_by_cat.each do |subcategory| %>  
+	<option value = '<%= subcategory.id %>' ><%= subcategory.subcategory %></option>
+<% end %>
+</select>
+
+<script type="text/javascript">
+function selSub(){
+	var x = document.getElementById("subSelect");
+	var i = x.selectedIndex;
+	var selection = x[i].text;
+	var selid = x[i].value;
+	document.getElementById("SelectSub").value = selid;
+}
+</script>
+
+<br />
+
+<form action = 'words' method='get'>
+	<button  id = 'SelectSub' name='mySub'  type='submit'>Select</button>
+</form>
