@@ -4,7 +4,7 @@
     <% end %>
     
 	<%= form_tag do %>
-    <fieldset  style="width: 400px;">
+    <fieldset>
         <legend>Please Log In</legend>
         
 		<div>
