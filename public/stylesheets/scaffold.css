@@ -1,4 +1,12 @@
-body { background-color: #fff; color: #333; }
+body { 
+	background-color: #FFFF66;
+	color: black; 
+	background-image: url(../images/wallpaper-400.gif);
+	background-position: right top;
+	background-repeat: no-repeat;
+	background
+	 
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;

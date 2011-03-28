@@ -4,7 +4,7 @@
     <% end %>
     
 	<%= form_tag do %>
-    <fieldset>
+    <fieldset  style="width: 400px;">
         <legend>Please Log In</legend>
         
 		<div>
@@ -23,6 +23,8 @@
         </div>
     </fieldset>
 	<% end %>
-	<%= button_to 'New User', new_user_path %>
+	<form action='users/new' method='get'>
+		<button type='submit' >New User</button>		
+	</form>
 	
 </div>

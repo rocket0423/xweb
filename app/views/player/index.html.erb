@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Select Categories</title>
+        <script language="javascript">
+        	var catBoxSelection
+			
+            function addOption(selectbox, text, value){
+                var optn = document.createElement("OPTION");
+                optn.text = text;
+                optn.value = value;
+                selectbox.options.add(optn);
+            }
+            
+            function addOption_list(){
+                //document.write( " <% Category.all.each do |category| %> " )
+                addOption(document.drop_list.Cat, "<%= category.category %>", "<%= category.id %>");
+                //document.write( " <% end %> ")
+            }
+            
+            function selCat(){
+                var cat1 = document.getElementById("Cat")
+                var subcat1 = document.getElementById("SubCat")
+                var catI = cat1.selectedIndex
+                var catSelId = cat1[catI].value;
+				if (catBoxSelection != catI) {
+                	for (var r = subcat1.options.length - 1; r >= 0; r--) {
+                    	subcat1.remove(r)
+                	}
+					//document.write( " <% Subcategory.all.each do |subcategory| %> " )
+					if ("<%= subcategory.categories_id %>" == catSelId) {
+						addOption(document.drop_list.SubCat, "<%= subcategory.subcategory %>", "<%= subcategory.id %>");
+					}
+					//document.write( " <% end %> ")
+					catBoxSelection = catI
+					document.getElementById("Selection").disabled='disabled'
+				}
+            }
+            
+            function selSubCat(){		
+				document.getElementById("Selection").disabled=''
+            }
+        </script>
+    </head>
+    <body onload="addOption_list()";>
+        <h1 align="center">Select a Category and SubCategory</h1>
+        <FORM name="drop_list" action="player" method="post">
+        <br/>
+		<h2>Select a Category</h2>
+        <br/>
+        <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();">
+        </SELECT>
+        <br/>
+        <h2>Select a SubCategory</h2>
+        <br/>
+        <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();">
+        </SELECT>
+		<br />
+		<br />
+		<button id='Selection' name= 'SubmitChoice' type='submit' value ='1' disabled='disabled'>Play Game</button>
+        </form>
+    </body>
+</html>

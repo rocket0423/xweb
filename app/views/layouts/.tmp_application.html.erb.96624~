@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Xweb</title>
+        <%= stylesheet_link_tag :all %>
+        <%= javascript_include_tag :defaults %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body id="">
+        <div id="columns">
+            <div id="main">
+                <%= yield %>
+            </div>
+            <div id="side">
+                <% if session[:user_id] %>
+                <% if User.find(session[:user_id]).administrator %>
+                <br/>
+                <%= link_to 'Users', users_path %>
+                <br/>
+                <br/>
+                <%= link_to 'Categories', categories_path %>
+                <br/>
+                <br/>
+                <%= link_to 'HangMen', hang_men_path %>
+                <br/>
+                <br/>
+                <%= link_to 'SubCategories', subcategories_path %>
+                <br/>
+                <br/>
+                <%= link_to 'Words', words_path %>
+                <br/>
+				<br/>
+                <br/>
+                <%= link_to 'Admin', admin_path %>
+                <br/>
+				<% end %>
+                <br/>
+                <%= link_to 'Game', game_path %>
+                <br/>
+				<br/>
+				<br/>
+                <%= button_to 'Logout', logout_path, :method => :delete %>
+				<br/>
+				<br/>
+				<br/>
+				<%= button_to 'Delete Account', users_path,:confirm => 'Are you sure?', :method => :delete %>
+                <% end %>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>SubCategories</title>
+        <script language="javascript">
+            function addOption(selectbox, text, value){
+                var optn = document.createElement("OPTION");
+                optn.text = text;
+                optn.value = value;
+                selectbox.options.add(optn);
+            }
+            
+            function addOption_list(){
+				var categoryList = "<%= Category.find_by_category('Movie') %>"
+				//for (var a = 0; a< categoryList.length; a++) {
+				//	addOption(document.drop_list.Cat, categoryList[a].category, categoryList[a].category)
+				//}
+				addOption(document.drop_list.Cat, categoryList, categoryList);
+                addOption(document.drop_list.SubCat, "One", "One");
+                addOption(document.drop_list.SubCat, "Two", "Two");
+                addOption(document.drop_list.SubCat, "Three", "Three");
+                addOption(document.drop_list.Cat, "Four", "Four");
+                addOption(document.drop_list.Cat, "Five", "Five");
+                addOption(document.drop_list.Cat, "Six", "Six");
+            }
+            
+            function selCat(){
+                var x = document.getElementById("Cat")
+                var i = x.selectedIndex
+                var selection = x[i].text
+                document.getElementById("hintPhrase").innerHTML=selection
+                for (var i = x.options.length - 1; i >= 0; i--) {
+                        x.remove(i)
+                }
+				addOption(document.drop_list.Cat, "Four", "Four");
+            }
+        </script>
+    </head>
+    <body onload="addOption_list()";>
+        <h1 align="center">Select a subcategory</h1>
+        <p id="hintPhrase">
+            Guess What
+        </p>
+        <FORM name="drop_list" action="yourpage.php" method="POST">
+        Categories
+		<br/>
+        <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();">
+        </SELECT>
+        <br/>
+        SubCategories
+		<br/>
+        <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();">
+        </SELECT>
+        </form>
+    </body>
+</html>
