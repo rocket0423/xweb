@@ -62,7 +62,7 @@
                 }
                 //document.write( " <% end %> ")
                 hangSelect = true
-                if (subSelect) {
+				if (subSelect) {
                     document.getElementById("Selection").disabled = ''
                 }
             }

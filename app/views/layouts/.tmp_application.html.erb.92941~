@@ -8,17 +8,9 @@
     </head>
     <body id="">
         <div id="banner">
-            <img src = "/images/wallpaper-400.gif" width = "60" height = "45" alt = "hangman" />
+			<img src = "/images/wallpaper-400.gif" width = "60" height = "45"
+               alt = "hangman" /> 
             <%= @page_title || "Hangman" %><!-- <label id="code.depot.e.title"/> -->
-			<% if session[:user_id] %>
-			<p>
-            	
-                User: <%= User.find(session[:user_id]).name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <br/>
-                Score: <%= User.find(session[:user_id]).score %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </p>
-            <% end %>
-            
         </div>
         <div id="columns">
             <div id="side">
@@ -53,49 +45,6 @@
                 <%= button_to 'Logout', logout_path, :method => :delete %>
                 <br/>
                 <%= button_to 'Delete Account', users_path,:confirm => 'Are you sure?', :method => :delete %>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <% if !User.find(session[:user_id]).administrator %>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <% end %>
-                <% end %>
-                <% if !session[:user_id] %>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
                 <% end %>
             </div>
             <div id="main">

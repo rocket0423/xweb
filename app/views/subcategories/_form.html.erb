@@ -1,25 +1,27 @@
 <%= form_for(@subcategory) do |f| %>
-  <% if @subcategory.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@subcategory.errors.count, "error") %> prohibited this subcategory from being saved:</h2>
-
-      <ul>
-      <% @subcategory.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :categories_id %><br />
-    <%= f.text_field :categories_id %>
-  </div>
-  <div class="field">
-    <%= f.label :subcategory %><br />
+<% if @subcategory.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@subcategory.errors.count, "error") %>prohibited this subcategory from being saved:</h2>
+    <ul>
+        <% @subcategory.errors.full_messages.each do |msg| %>
+        <li>
+            <%= msg %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div class="field">
+    <% category = Category.all.collect {|i| [ h(i.category), i.id ] } %>
+    <%= f.label :categories_id %>
+    <%= f.select(:categories_id, category, { :include_blank => false, :selected => @subcategory.categories_id }, :id => "{@subcategory.id}") %>
+</div>
+<div class="field">
+    <%= f.label :subcategory %>
+    <br/>
     <%= f.text_field :subcategory %>
-  </div>
-  <div class="actions">
+</div>
+<div class="actions">
     <%= f.submit %>
-  </div>
+</div>
 <% end %>
