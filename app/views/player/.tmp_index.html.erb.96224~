@@ -62,7 +62,7 @@
                 }
                 //document.write( " <% end %> ")
                 hangSelect = true
-                if (subSelect) {
+				if (subSelect) {
                     document.getElementById("Selection").disabled = ''
                 }
             }
@@ -106,9 +106,6 @@
         </button>
         <button id='PrevGame' name= 'PrevGame' type='submit' value ='2'>
             Continue Previous Game
-        </button>
-		<button id='LeaderBoard' name= 'LeaderBoard' type='submit' value ='3'>
-            Leader Board
         </button>
         </form>
     </body>

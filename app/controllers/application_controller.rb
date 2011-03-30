@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   
   def authorizeAdministrator
     unless User.find_by_id_and_administrator(session[:user_id], true)
-      redirect_to admin_url, :notice => "Administrator only"
+      redirect_to player_url, :notice => "Administrator only"
     end
   end
 end

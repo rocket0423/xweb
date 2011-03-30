@@ -107,9 +107,6 @@
         <button id='PrevGame' name= 'PrevGame' type='submit' value ='2'>
             Continue Previous Game
         </button>
-		<button id='LeaderBoard' name= 'LeaderBoard' type='submit' value ='3'>
-            Leader Board
-        </button>
         </form>
     </body>
 </html>

@@ -1,0 +1,2 @@
+module UpdatetablesHelper
+end

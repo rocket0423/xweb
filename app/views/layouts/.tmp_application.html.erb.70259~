@@ -44,18 +44,17 @@
                 <br/>
                 <% end %>
                 <br/>
-                <%= link_to 'Home', player_path %>
+                <%= link_to 'Game', game_path %>
                 <br/>
                 <br/>
-				<%= link_to 'Current Game', game_path %>
-                <br/>
-                <br/>
-				<%= link_to 'LeaderBoard', leaderboard_path %>
+                <%= link_to 'Player', player_path %>
                 <br/>
                 <br/>
                 <%= button_to 'Logout', logout_path, :method => :delete %>
                 <br/>
                 <%= button_to 'Delete Account', users_path,:confirm => 'Are you sure?', :method => :delete %>
+                <br/>
+                <br/>
                 <br/>
                 <br/>
                 <br/>

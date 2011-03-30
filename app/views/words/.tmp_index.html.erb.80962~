@@ -6,6 +6,7 @@
 	<th>Subcategories ID</th>
     <th>Word</th>
     <th>Hint</th>
+    <th>Points</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
 	<td><%= word.subcategories_id %></td>
     <td><%= word.word %></td>
     <td><%= word.hint %></td>
+    <td><%= word.points %></td>
     <td><%= link_to 'Show', word %></td>
     <td><%= link_to 'Edit', edit_word_path(word) %></td>
     <td><%= link_to 'Destroy', word, :confirm => 'Are you sure?', :method => :delete %></td>

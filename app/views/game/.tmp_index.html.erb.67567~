@@ -100,9 +100,10 @@
 		<br/>
 		<br/>
 		<form action='game' method='post'>
-			<button name= 'buttonClicked' type='submit' value="29">Home</button>
-			<button name= 'buttonClicked' type='submit' value="27">New Game</button>
-			<button name= 'buttonClicked' type='submit' value="28">Leader Board</button>		
+			<button name= 'buttonClicked' type='submit' value="27">New Game</button>		
 		</form>
     </body>
 </html>
+<!--
+
+-->

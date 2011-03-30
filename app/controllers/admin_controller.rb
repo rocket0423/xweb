@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
-  skip_before_filter :authorizeAdministrator
   
   def index
+    @user = User.find(session[:user_id])
   end
 
 end
