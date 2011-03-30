@@ -38,6 +38,7 @@
 			if (incorrectLetters>=7) {
 				active = "000000000000000000000000000"
 			}
+			document.write("<div id='hang'>")
             for (var j = 0; j < word.length; j++) {
                 if (word[j] == " ") {
                     document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -49,7 +50,7 @@
                                 document.write(word[j])
                             }
                             else {
-                                document.write("___ ")
+                                document.write("_ ")
 								complete = false
                             }
                         }
@@ -57,6 +58,7 @@
                     
                 }
             }
+			document.write("</div>")
 			if (complete) {
 				active = "000000000000000000000000000"
 			}
