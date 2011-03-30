@@ -2,12 +2,10 @@
 
 one:
   subcategories_id: 1
-  word: MyString
-  hint: MyString
-  points: 1
+  word: Romeo and Juliet
+  hint: The endless love story
 
 two:
   subcategories_id: 1
   word: MyString
   hint: MyString
-  points: 1
