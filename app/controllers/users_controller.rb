@@ -51,6 +51,7 @@ class UsersController < ApplicationController
     else
       @user = User.new(params[:user])
       @user.administrator = false
+      @user.score = 0
       
       if @user.save
         if !User.find_by_id(session[:user_id])

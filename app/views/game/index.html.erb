@@ -1,10 +1,9 @@
 <html>
     <body>
-        <h1>HANGMAN</h1>
 		<form action='game' method='post'>
 			<table>
 				<tr>
-        			<td><img id="myImage" src ="/images/hangman1/533hangman-step1.jpg" alt = "HangMan"  width="150" height="200"  /></td>
+        			<td><img id="myImage" alt = "HangMan"  width="150" height="200"  /></td>
         			<td>
         				<button id="hint" name= 'buttonClicked' type='submit' value="26">Hint</button>
 						<br />
@@ -39,6 +38,7 @@
 			if (incorrectLetters>=7) {
 				active = "000000000000000000000000000"
 			}
+			document.write("<div id='hang'>")
             for (var j = 0; j < word.length; j++) {
                 if (word[j] == " ") {
                     document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -50,7 +50,7 @@
                                 document.write(word[j])
                             }
                             else {
-                                document.write("___ ")
+                                document.write("_ ")
 								complete = false
                             }
                         }
@@ -58,6 +58,7 @@
                     
                 }
             }
+			document.write("</div>")
 			if (complete) {
 				active = "000000000000000000000000000"
 			}
@@ -83,28 +84,27 @@
 			
             document.write("</form>")
 			if(incorrectLetters==1){
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang1_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang1_url %> "
         	} else if (incorrectLetters==2){
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang2_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang2_url %> "
 			} else if (incorrectLetters==3){
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang3_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang3_url %> "
 			} else if (incorrectLetters==4){
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang4_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang4_url %> "
 			} else if (incorrectLetters==5){
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang5_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang5_url %> "
 			} else if (incorrectLetters==6){
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang6_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang6_url %> "
 			} else {
-				document.getElementById("myImage").src= " <%= HangMan.find_by_hang1_url('/images/hangman1/533hangman-step1.jpg').hang7_url %> "
+				document.getElementById("myImage").src= " <%= @hang.hang7_url %> "
 			}
 		</script>
 		<br/>
 		<br/>
 		<form action='game' method='post'>
-			<button name= 'buttonClicked' type='submit' value="27">New Game</button>		
+			<button name= 'buttonClicked' type='submit' value="29">Home</button>
+			<button name= 'buttonClicked' type='submit' value="27">New Game</button>
+			<button name= 'buttonClicked' type='submit' value="28">Leader Board</button>		
 		</form>
     </body>
 </html>
-<!--
-
--->

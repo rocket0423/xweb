@@ -1,0 +1,27 @@
+<h1>Listing SubCategories</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>SubCategory</th>
+    <th>Category ID</th>
+	<th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subcategories.each do |subcategory| %>
+  <tr>
+    <td><%= subcategory.id %></td>
+    <td><%= subcategory.subcategory %></td>
+	<td><%= subcategory.categories_id %></td>
+    <td><%= link_to 'Show', subcategory %></td>
+    <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
+    <td><%= link_to 'Destroy', subcategory, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sub Category', new_subcategory_path %>

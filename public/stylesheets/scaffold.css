@@ -1,9 +1,12 @@
 body { 
 	background-color: #FFFF66;
 	color: black; 
+<<<<<<< HEAD
 	background-image: url(../images/celebration-animation.gif);
 	background-position: right;
 	background-repeat: no-repeat;
+=======
+>>>>>>> b06b941537446b5881ee2fc0ef459bf1c69e364f
 	background
 	 
 }
@@ -80,6 +83,10 @@ div.field, div.actions {
   float: left;
 }
 
+#banner p {
+	float: right;
+}
+
 #columns {
   background: #141;
   background: rgba(0,0,0,0);
@@ -106,3 +113,8 @@ div.field, div.actions {
   font-size: small;
 }
 /* END:mainlayout */
+
+#hang {
+  font: 35px/35px "Ciscobold";
+  background: rgba(0,0,0,0);
+}

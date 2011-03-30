@@ -3,6 +3,11 @@ require 'test_helper'
 class WordsControllerTest < ActionController::TestCase
   setup do
     @word = words(:one)
+    @update = {
+      :subcategories_id    => 3,
+      :word                => 'Family',
+      :hint                => 'Family'
+    }
   end
 
   test "should get index" do
@@ -18,7 +23,7 @@ class WordsControllerTest < ActionController::TestCase
 
   test "should create word" do
     assert_difference('Word.count') do
-      post :create, :word => @word.attributes
+      post :create, :word => @update
     end
 
     assert_redirected_to word_path(assigns(:word))
@@ -35,7 +40,7 @@ class WordsControllerTest < ActionController::TestCase
   end
 
   test "should update word" do
-    put :update, :id => @word.to_param, :word => @word.attributes
+    put :update, :id => @word.to_param, :word => @update
     assert_redirected_to word_path(assigns(:word))
   end
 

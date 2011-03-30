@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Subcategories:</b>
+  <%= @word.subcategories_id %>
+</p>
+
+<p>
+  <b>Word:</b>
+  <%= @word.word %>
+</p>
+
+<p>
+  <b>Hint:</b>
+  <%= @word.hint %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @word.points %>
+</p>
+
+
+<%= link_to 'Edit', edit_word_path(@word) %> |
+<%= link_to 'Back', words_path %>

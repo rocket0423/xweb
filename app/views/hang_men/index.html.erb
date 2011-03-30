@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+  	<th>Name</th>
     <th>Hang1 url</th>
     <th>Hang2 url</th>
     <th>Hang3 url</th>
@@ -16,6 +17,7 @@
 
 <% @hang_men.each do |hang_man| %>
   <tr>
+  	<td><%= hang_man.name %></td>
     <td><%= hang_man.hang1_url %></td>
     <td><%= hang_man.hang2_url %></td>
     <td><%= hang_man.hang3_url %></td>

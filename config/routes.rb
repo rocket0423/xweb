@@ -1,4 +1,13 @@
 Xweb::Application.routes.draw do
+  controller :leaderboard do
+    get 'leaderboard' => :index
+    post 'leaderboard' => :home
+  end
+
+  controller :updatetables do
+    get 'updatetables' => :update
+  end
+
   controller :player do
     get 'player' => :index
     post 'player' => :choose
