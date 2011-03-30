@@ -107,3 +107,8 @@ div.field, div.actions {
   font-size: small;
 }
 /* END:mainlayout */
+
+#hang {
+  font: 35px/35px "Ciscobold";
+  background: rgba(0,0,0,0);
+}
