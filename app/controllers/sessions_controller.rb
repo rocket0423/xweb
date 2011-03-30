@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   skip_before_filter :authorizeAdministrator
   def new
     if User.find_by_id(session[:user_id])
-      redirect_to admin_url
+      redirect_to player_url
     end
   end
   
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       if user.administrator
         redirect_to admin_url
       else
-        redirect_to game_url
+        redirect_to player_url
       end
     else
       redirect_to login_url, :alert => "Invalid user/password combination"

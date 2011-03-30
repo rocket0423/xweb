@@ -5,10 +5,10 @@ class PlayerControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
-
+  
   test "should get choose" do
-    get :choose
-    assert_response :success
+    post :choose
+    assert_redirected_to player_url
   end
-
+  
 end

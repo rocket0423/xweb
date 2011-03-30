@@ -3,7 +3,7 @@ require 'test_helper'
 class UpdatetablesControllerTest < ActionController::TestCase
   test "should get update" do
     get :update
-    assert_response :success
+    assert_redirected_to player_path
   end
 
 end
