@@ -2,7 +2,7 @@
 
 one:
   categories_id: 1
-  subcategory: MyString
+  subcategory: Action
 
 two:
   categories_id: 1

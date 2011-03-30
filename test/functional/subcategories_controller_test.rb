@@ -3,6 +3,10 @@ require 'test_helper'
 class SubcategoriesControllerTest < ActionController::TestCase
   setup do
     @subcategory = subcategories(:one)
+    @update = {
+      :categories_id    => 1,
+      :subcategory      => 'Wonderful'
+    }
   end
 
   test "should get index" do
@@ -18,7 +22,7 @@ class SubcategoriesControllerTest < ActionController::TestCase
 
   test "should create subcategory" do
     assert_difference('Subcategory.count') do
-      post :create, :subcategory => @subcategory.attributes
+      post :create, :subcategory => @update
     end
 
     assert_redirected_to subcategory_path(assigns(:subcategory))
@@ -35,7 +39,7 @@ class SubcategoriesControllerTest < ActionController::TestCase
   end
 
   test "should update subcategory" do
-    put :update, :id => @subcategory.to_param, :subcategory => @subcategory.attributes
+    put :update, :id => @subcategory.to_param, :subcategory => @update
     assert_redirected_to subcategory_path(assigns(:subcategory))
   end
 
