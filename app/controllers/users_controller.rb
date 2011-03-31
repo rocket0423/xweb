@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :authorize, :only => [:new, :create, :destroy]
+  skip_before_filter :authorize, :only => [:new, :create]
   skip_before_filter :authorizeAdministrator, :only => [:new, :create, :dself]
   # GET /users
   # GET /users.xml
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     if User.find_by_id_and_administrator(session[:user_id], false)
-      redirect_to game_url
+      redirect_to player_url
     else
       @user = User.new
       
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     if User.find_by_id_and_administrator(session[:user_id], false)
-      redirect_to game_url
+      redirect_to player_url
     else
       @user = User.new(params[:user])
       @user.administrator = false
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       if @user.save
         if !User.find_by_id(session[:user_id])
           session[:user_id] = @user.id
-          redirect_to game_url
+          redirect_to player_url
         else
           respond_to do |format|
             format.html { redirect_to(@user, :notice => 'User was successfully created.') }

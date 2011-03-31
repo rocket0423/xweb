@@ -3,20 +3,24 @@ class SessionsController < ApplicationController
   skip_before_filter :authorizeAdministrator
   def new
     if User.find_by_id(session[:user_id])
-      redirect_to admin_url
+      redirect_to player_url
     end
   end
   
   def create
-    if user = User.authenticate(params[:name], params[:password])
-      session[:user_id] = user.id
-      if user.administrator
-        redirect_to admin_url
-      else
-        redirect_to game_url
-      end
+    if User.find_by_id(session[:user_id])
+      redirect_to player_url
     else
-      redirect_to login_url, :alert => "Invalid user/password combination"
+      if user = User.authenticate(params[:name], params[:password])
+        session[:user_id] = user.id
+        if user.administrator
+          redirect_to admin_url
+        else
+          redirect_to player_url
+        end
+      else
+        redirect_to login_url, :alert => "Invalid user/password combination"
+      end
     end
   end
   

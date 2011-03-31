@@ -1,13 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  subcategories_id: 1
-  word: MyString
-  hint: MyString
-  points: 1
+  subcategories_id: subcategories(:one).id
+  word: Romeo and Juliet
+  hint: The endless love story
 
 two:
-  subcategories_id: 1
+  subcategories_id: subcategories(:one).id
   word: MyString
   hint: MyString
-  points: 1

@@ -71,8 +71,8 @@
     <body onload="addOption_list()";>
         <h1 align="center">Select a Category and SubCategory</h1>
         <FORM name="drop_list" action="player" method="post">
-        <table width="700px">
-            <tr align="center">
+        <table>
+            <tr>
                 <th>
                     Select a Category
                 </th>
@@ -83,49 +83,33 @@
                     Select a HangMan
                 </th>
             </tr>
-            <tr align="center">
+            <tr>
                 <td>
                     <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();">
                     </SELECT>
                 </td>
                 <td>
                     <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();">
-                  
-                    
                     </SELECT>
                 </td>
                 <td>
                     <SELECT id="HangMan" NAME="HangMan" MULTIPLE size=6  width=10  onchange="selHangMan();">
                     </SELECT>
                 </td>
-                <td width="100">
+                <td>
                     <img id="myHangImage" width="100" height="95" />
                 </td>
             </tr>
-			<tr align="center">
-				<td>
-					<br />
-					<br />
-					<button id='Selection' name= 'SubmitChoice' type='submit' value ='1' disabled='disabled'>
-						Play New Game
-					</button>
-				</td>
-				<td>
-					<br />
-					<br />
-					<button id='PrevGame' name= 'PrevGame' type='submit' value ='2'>
-            			Continue Previous Game
-        			</button>
-				</td>
-				<td>
-					<br />
-					<br />
-					<button id='LeaderBoard' name= 'LeaderBoard' type='submit' value ='3'>
-            			Leader Board
-        			</button>
-				</td>
-			</tr>
-        </table>     
-		</form>
+        </table>
+        <button id='Selection' name= 'SubmitChoice' type='submit' value ='1' disabled='disabled'>
+            Play New Game
+        </button>
+        <button id='PrevGame' name= 'PrevGame' type='submit' value ='2'>
+            Continue Previous Game
+        </button>
+		<button id='LeaderBoard' name= 'LeaderBoard' type='submit' value ='3'>
+            Leader Board
+        </button>
+        </form>
     </body>
 </html>
