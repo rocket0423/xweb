@@ -1,6 +1,12 @@
 body { 
 	background-color: #FFFF66;
 	color: black; 
+<<<<<<< HEAD
+	background-image: url(../images/celebration-animation.gif);
+	background-position: right;
+	background-repeat: no-repeat;
+=======
+>>>>>>> b06b941537446b5881ee2fc0ef459bf1c69e364f
 	background
 	 
 }
