@@ -1,7 +1,5 @@
 <html>
     <body>
-    	<h2>Category: <%= @getCat.category %></h2> 
-		<h3>Subcategory: <%= @getSubCat.subcategory %></h3>
         <form action='game' method='post'>
             <table>
                 <tr>

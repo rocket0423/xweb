@@ -4,6 +4,10 @@ class GameController < ApplicationController
   
   def index
     @user = User.find(session[:user_id])
+    @getWord = Word.find(@user.word_id)
+    @getSubCat = Subcategory.find(@getWord.subcategories_id)
+    @getCat = Category.find(@getSubCat.categories_id)
+    
     if(@user.word_id==nil || @user.active==nil || @user.hangman_id==nil)
       @user.active = nil
       @user.word_id = nil
