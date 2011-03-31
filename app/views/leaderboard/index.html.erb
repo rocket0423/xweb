@@ -1,6 +1,7 @@
 <h1>Leader Board</h1>
-<table>
-    <tr>
+<img id="animation" src="../images/celebration-animation.gif" align="right">
+<table align="left">
+    <tr align="center">
         <th>
             User
         </th>
@@ -9,7 +10,7 @@
         </th>
     </tr>
     <% @leaders.each do |leaders| %>
-    <tr>
+    <tr align="center">
         <td>
             <%= leaders.name %>
         </td>
@@ -18,10 +19,15 @@
         </td>
     </tr>
     <% end %>
+    <tr align="center">
+        <td>
+        	<br />
+			<br />
+            <form action='leaderboard' method='post'>
+                <button name= 'buttonClicked' type='submit'>
+                    Home
+                </button>
+            </form>
+        </td>
+    </tr>
 </table>
-<br/>
-<form action='leaderboard' method='post'>
-    <button name= 'buttonClicked' type='submit'>
-        Home
-    </button>
-</form>
