@@ -67,7 +67,9 @@
             }
             document.write("</div>")
             if (complete) {
-                active = "000000000000000000000000000"
+                //Puzzle solved
+				active = "000000000000000000000000000"
+				setTimeout("document.getElementById('myImage').src = '../images/celebration-animation.gif'", 1500);
             }
             document.write("<br />")
             document.write("<br />")
@@ -85,6 +87,7 @@
                 }
             }
             if (active[26] == 0) {
+				//Hint button selected
                 document.getElementById("hint").disabled = 'disabled'
                 document.getElementById("hintPhrase").innerHTML = "<%= @word.hint %>"
             }
@@ -115,6 +118,7 @@
                                 }
                                 else {
                                     document.getElementById("myImage").src = " <%= @hang.hang7_url %> "
+									setTimeout("document.getElementById('myImage').src = '../images/gameover.gif'", 2000);
                                 }
         </script>
         <br/>
