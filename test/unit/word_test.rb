@@ -10,6 +10,18 @@ class WordTest < ActiveSupport::TestCase
     assert word.errors[:hint].any?
   end
   
+  test "Word cannot contain a number" do
+    word = Word.new( :subcategories_id => "30",
+                     :hint => "Empty test",
+                     :points => "15",
+                     :button_score => "10",
+                     :letter_seq => "111101111101111110111101111")
+                     
+    word.word = "Maroon5"
+    assert word.invalid?
+    assert word.errors[:word].any?
+  end
+  
   test "Subcategories_id must not be negative" do
     word = Word.new( :word => "Test Word",
                      :hint => "Just a test",
