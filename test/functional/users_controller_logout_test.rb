@@ -6,6 +6,7 @@ class UsersControllerTest < ActionController::TestCase
       :name                  => "sam",
       :password              => "private",
       :password_confirmation => "private",
+      :score                 => 0
     }
     @user = users(:one)
   end

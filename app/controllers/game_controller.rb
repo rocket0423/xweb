@@ -37,7 +37,6 @@ class GameController < ApplicationController
       redirect_to player_url
     else
       clicked = params[:buttonClicked].to_i
-      @user = User.find(session[:user_id])
       @word = Word.find(@user.word_id)
       if (clicked >= 0 && clicked < 27)
         guess = @user.active2

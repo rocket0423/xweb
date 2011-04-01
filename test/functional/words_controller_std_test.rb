@@ -6,7 +6,10 @@ class WordsControllerTest < ActionController::TestCase
     @update = {
       :subcategories_id    => subcategories(:one).id,
       :word                => 'Family',
-      :hint                => 'Family'
+      :hint                => 'Family',
+      :points              => 10,
+      :button_score        => 10,
+      :letter_seq          => '111101111111010110111111111'
     }
   end
   
