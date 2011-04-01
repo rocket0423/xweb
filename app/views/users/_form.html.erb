@@ -18,15 +18,19 @@
             Enter User Details
         </legend>
         <div>
+        	<!-- Enter user name -->
             <%= f.label :name %>:<%= f.text_field :name, :size => 40 %>
         </div>
         <div>
+        	<!-- Enter password -->
             <%= f.label :password, 'Password' %>:<%= f.password_field :password, :size => 40 %>
         </div>
         <div>
-            <%= f.label :password_confirmation, 'Confirm' %>:<%= f.password_field :password_confirmation, :size => 40 %>
+            <!-- Confirm password -->
+			<%= f.label :password_confirmation, 'Confirm' %>:<%= f.password_field :password_confirmation, :size => 40 %>
         </div>
         <div class="field">
+        	<!-- Checkboxes for administrator selection -->
             <%= f.label :administrator %>
             <%= f.check_box :administrator %>
         </div>

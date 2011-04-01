@@ -12,11 +12,14 @@
 </div>
 <% end %>
 <div class="field">
+	<!-- Select category field -->
+	<!-- ID stored in db based on selection -->
     <% category = Category.all.collect {|i| [ h(i.category), i.id ] } %>
     <%= f.label :categories_id %>
     <%= f.select(:categories_id, category, { :include_blank => false, :selected => @subcategory.categories_id }, :id => "{@subcategory.id}") %>
 </div>
 <div class="field">
+	<!-- Enter text for subcategory -->
     <%= f.label :subcategory %>
     <br/>
     <%= f.text_field :subcategory %>

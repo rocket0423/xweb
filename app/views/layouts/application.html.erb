@@ -12,7 +12,7 @@
             <%= @page_title || "Hangman" %><!-- <label id="code.depot.e.title"/> -->
 			<% if session[:user_id] %>
 			<p>
-            	
+            	<!-- Display of username and points -->
                 User: <%= User.find(session[:user_id]).name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br/>
                 Score: <%= User.find(session[:user_id]).score %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

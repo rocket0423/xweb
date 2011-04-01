@@ -12,16 +12,20 @@
 </div>
 <% end %>
 <div class="field">
+	<!-- Select subcategory field, id stored based on selections -->
+	<!-- Displayed as "Category - Subcategory" -->
     <% subcategory = Subcategory.all.collect {|i| [ h(Category.find(i.categories_id).category + "  -  " + i.subcategory), i.id ] } %>
     <%= f.label :subcategories_id %>
     <%= f.select(:subcategories_id, subcategory, { :include_blank => false, :selected => @word.subcategories_id }, :id => "{@word.id}") %>
 </div>
 <div class="field">
+	<!-- Enter text for word -->
     <%= f.label :word %>
     <br/>
     <%= f.text_field :word %>
 </div>
 <div class="field">
+	<!-- Enter text for hint -->
     <%= f.label :hint %>
     <br/>
     <%= f.text_field :hint %>
