@@ -65,21 +65,8 @@ class WordsController < ApplicationController
       j +=1
     end
     
-<<<<<<< HEAD
-    #Write points, letter_seq, and button_score fields
-    respond_to do |format|
-      if @word.save
-        format.html { redirect_to(@word, :notice => 'Word was successfully created.') }
-        format.xml  { render :xml => @word, :status => :created, :location => @word }
-        @word.button_score = ((1000*numberUnique)/(numberLetter*6*(21-numberUnique)))
-        @word.points = (1000/(numberUnique*numberLetter))
-        @word.letter_seq = correctLetters
-        @word.save
-      else
-=======
     respond_to do |format|
       if numberUnique == 0
->>>>>>> 387525d8cffc33b8dba46cfb749025d3507a470c
         format.html { render :action => "new" }
         format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
       else
@@ -123,23 +110,9 @@ class WordsController < ApplicationController
       end
       j +=1
     end
-<<<<<<< HEAD
-     
-    #Write points, letter_seq, and button_score fields
-    respond_to do |format|
-      if @word.update_attributes(params[:word])
-        format.html { redirect_to(@word, :notice => 'Word was successfully updated.') }
-        format.xml  { head :ok }
-        @word.button_score = ((1000*numberUnique)/(numberLetter*6*(21-numberUnique)))
-        @word.points = (1000/(numberUnique*numberLetter))
-        @word.letter_seq = correctLetters
-        @word.save
-      else
-=======
     
     respond_to do |format|
       if numberUnique == 0
->>>>>>> 387525d8cffc33b8dba46cfb749025d3507a470c
         format.html { render :action => "edit" }
         format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
       else
