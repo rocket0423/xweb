@@ -2,8 +2,10 @@ class PlayerController < ApplicationController
   skip_before_filter :authorizeAdministrator
   protect_from_forgery :only => [:index] 
   
+  # main page to choose categories
   def index
     @user = User.find(session[:user_id])
+    #sends information whether another game is already active
     if(@user.word_id==nil || @user.active==nil || @user.hangman_id==nil)
       @valid = 1
     else
@@ -11,17 +13,23 @@ class PlayerController < ApplicationController
     end
   end
   
+  #controller for buttons pressed to where to go based on button pressed
   def choose
+    #goes to leaderboard if leaderboard button presed
     if params[:LeaderBoard]=="3"
       redirect_to leaderboard_url
     else
+      #continues saved previous game user was playing
       if params[:PrevGame]=="2"
         redirect_to game_url
       else
+        #starts new game from 3 box choices
         if params[:SubmitChoice]=="1"
+          #chooses a random word
           @rand = Word.find_all_by_subcategories_id(params[:SubCat], :order => "RANDOM()", :limit => 1)
           if (@rand[0] != nil)
             @user = User.find(session[:user_id])
+            #if active game already determine if game finnished and modify score to loosing
             if(@user.word_id!=nil && @user.active!=nil || @user.hangman_id!=nil)
               @word = Word.find(@user.word_id)
               incorrectChoices = 0
@@ -50,6 +58,7 @@ class PlayerController < ApplicationController
                 end
               end
             end
+            #setup new word for user
             @user.word_id = @rand[0].id
             @user.active = "111111111111111111111111111"
             @user.hangman_id = params[:HangMan]

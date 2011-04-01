@@ -49,6 +49,8 @@ class WordsController < ApplicationController
     numberLetter=0
     numberUnique=0
     j=0
+    #loop to determine what letters are in the word modifing correctLetters
+    #array with 0 for letters that are in the word
     while j<@word.word.length do
       i = 0
       while i < correctLetters.length  do
@@ -66,11 +68,13 @@ class WordsController < ApplicationController
     end
     
     respond_to do |format|
+      #determine if no letters are in word throw error
       if numberUnique == 0
         format.html { render :action => "new" }
         format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
       else
         if @word.save  
+          #determine score for each word
           @word.button_score = ((1000*numberUnique)/(numberLetter*6*(21-numberUnique)))
           @word.points = (1000/(numberUnique*numberLetter))
           @word.letter_seq = correctLetters
@@ -95,6 +99,8 @@ class WordsController < ApplicationController
     numberLetter=0
     numberUnique=0
     j=0
+    #loop to determine what letters are in the word modifing correctLetters
+    #array with 0 for letters that are in the word
     while j<@word.word.length do
       i = 0
       while i < correctLetters.length  do
@@ -112,11 +118,13 @@ class WordsController < ApplicationController
     end
     
     respond_to do |format|
+      #determine if no letters in word throw error if no letters
       if numberUnique == 0
         format.html { render :action => "edit" }
         format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
       else
         if @word.update_attributes(params[:word])
+          #determine score for each word
           @word.button_score = ((1000*numberUnique)/(numberLetter*6*(21-numberUnique)))
           @word.points = (1000/(numberUnique*numberLetter))
           @word.letter_seq = correctLetters
