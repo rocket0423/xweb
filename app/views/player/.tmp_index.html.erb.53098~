@@ -6,8 +6,7 @@
             var hangSelect = false
             var subSelect = false
             
-            //Function to add values to listboxes
-			function addOption(selectbox, text, value){
+            function addOption(selectbox, text, value){
                 var optn = document.createElement("OPTION");
                 optn.text = text;
                 optn.value = value;
@@ -26,9 +25,7 @@
                 }
             }
             
-            //What to do when a category is selected
-			//load subcategories listbox
-			function selCat(){
+            function selCat(){
                 var cat1 = document.getElementById("Cat")
                 var subcat1 = document.getElementById("SubCat")
                 var catI = cat1.selectedIndex
@@ -48,8 +45,7 @@
                 }
             }
             
-            //What to do when a subcategory is selected
-			function selSubCat(){
+            function selSubCat(){
                 subSelect = true
                 if (hangSelect) {
                     document.getElementById("Selection").disabled = ''
@@ -89,22 +85,18 @@
             </tr>
             <tr align="center">
                 <td>
-                	<!-- listbox for categories -->
                     <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();">
                     </SELECT>
                 </td>
                 <td>
-                	<!-- listbox for subcategories -->
                     <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();">
                     </SELECT>
                 </td>
                 <td>
-                	<!-- listbox for hangman images -->
                     <SELECT id="HangMan" NAME="HangMan" MULTIPLE size=6  width=10  onchange="selHangMan();">
                     </SELECT>
                 </td>
                 <td width="100">
-                	<!-- Preview for Hangman graphics to use -->
                     <img id="myHangImage" height="95" />
                 </td>
             </tr>
