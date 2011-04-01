@@ -2,10 +2,16 @@
 
 one:
   subcategories_id: subcategories(:one).id
-  word: Romeo and Juliet
+  word: Romeo
   hint: The endless love story
+  points: 10
+  button_score: 10
+  letter_seq: 111101111111010110111111111
 
 two:
   subcategories_id: subcategories(:one).id
   word: MyString
   hint: MyString
+  points: 10
+  button_score: 10
+  letter_seq: 111101111111010110111111111
