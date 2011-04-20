@@ -17,7 +17,7 @@ class WordTest < ActiveSupport::TestCase
                      :button_score => "10",
                      :letter_seq => "111101111101111110111101111")
                      
-    word.word = "Maroon5"
+    word.word = "Maroon 5"
     assert word.invalid?
     assert word.errors[:word].any?
   end
