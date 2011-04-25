@@ -13,11 +13,14 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @category = Category.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @category }
+    if Category.find_by_id(params[:id])
+      @category = Category.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @category }
+      end
+    else
+      redirect_to categories_url
     end
   end
   
@@ -73,11 +76,40 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.xml
   def destroy
     @category = Category.find(params[:id])
+    deleteSubCat(@category)
     @category.destroy
     
     respond_to do |format|
       format.html { redirect_to(categories_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+    # cascading delete
+  def deleteSubCat(cat)
+    @sub_by_cat = Subcategory.find_all_by_categories_id(cat.id);
+    @sub_by_cat.each do |cat1|
+      deleteWord(cat1)
+      cat1.destroy
+    end
+  end
+  
+  def deleteWord(subcat)
+    @words_by_sub = Word.find_all_by_subcategories_id(subcat.id);
+    @words_by_sub.each do |subcat1|
+      deleteUserAccess(subcat1)
+      subcat1.destroy
+    end
+  end
+  
+  def deleteUserAccess(word)
+    @user_by_word = User.find_all_by_word_id(word.id);
+    @user_by_word.each do |word1|
+       word1.active = nil
+       word1.active = nil
+       word1.hangman_id = nil
+       word1.word_id = nil
+       word1.save
     end
   end
 end
