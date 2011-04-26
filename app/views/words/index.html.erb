@@ -1,9 +1,8 @@
 <h1>Listing words</h1>
 
 <table>
-  <tr>
-    <th>ID</th>
-	<th>Subcategories ID</th>
+  <tr align="left">
+	<th>Category - Subcategory</th>
     <th>Word</th>
     <th>Hint</th>
     <th></th>
@@ -12,11 +11,12 @@
   </tr>
 
 <% @words.each do |word| %>
-  <tr>
-	<td><%= word.id %></td>
-	<td><%= word.subcategories_id %></td>
-    <td><%= word.word %></td>
-    <td><%= word.hint %></td>
+<% @mySubCat = Subcategory.find(word.subcategories_id) %>
+<% @myCat = Category.find(@mySubCat.categories_id) %>
+  <tr align="left">
+	<td width="200"><%= @myCat.category %> - <%= @mySubCat.subcategory %></td>
+    <td width="200"><%= word.word %></td>
+    <td width="250"><%= word.hint %></td>
     <td><%= link_to 'Show', word %></td>
     <td><%= link_to 'Edit', edit_word_path(word) %></td>
     <td><%= link_to 'Destroy', word, :confirm => 'Are you sure?', :method => :delete %></td>

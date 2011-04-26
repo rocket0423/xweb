@@ -1,8 +1,7 @@
 <h1>Listing Categories</h1>
 
 <table>
-  <tr>
-    <th>ID</th>
+  <tr align="left">
     <th>Category</th>
     <th></th>
     <th></th>
@@ -10,9 +9,8 @@
   </tr>
 
 <% @categories.each do |category| %>
-  <tr>
-    <td><%= category.id %></td>
-    <td><%= category.category %></td>
+  <tr align="left">
+    <td width="150"><%= category.category %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>

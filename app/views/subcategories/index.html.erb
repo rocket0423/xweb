@@ -1,20 +1,19 @@
 <h1>Listing SubCategories</h1>
 
 <table>
-  <tr>
-    <th>ID</th>
-    <th>SubCategory</th>
-    <th>Category ID</th>
+  <tr align="left">
+    <th>Category</th>
+	<th>SubCategory</th>
 	<th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @subcategories.each do |subcategory| %>
-  <tr>
-    <td><%= subcategory.id %></td>
-    <td><%= subcategory.subcategory %></td>
-	<td><%= subcategory.categories_id %></td>
+<% @catname = Category.find(subcategory.categories_id) %>
+  <tr align="left">
+    <td width="150"><%= @catname.category %></td>
+	<td width="150"><%= subcategory.subcategory %></td>
     <td><%= link_to 'Show', subcategory %></td>
     <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
     <td><%= link_to 'Destroy', subcategory, :confirm => 'Are you sure?', :method => :delete %></td>
