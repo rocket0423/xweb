@@ -37,7 +37,11 @@ class CategoriesController < ApplicationController
   
   # GET /categories/1/edit
   def edit
-    @category = Category.find(params[:id])
+    if Category.find_by_id(params[:id])
+      @category = Category.find(params[:id])
+    else
+      redirect_to categories_url
+    end
   end
   
   # POST /categories
@@ -59,29 +63,37 @@ class CategoriesController < ApplicationController
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
-    @category = Category.find(params[:id])
+    if Category.find_by_id(params[:id])
+      @category = Category.find(params[:id])
     
-    respond_to do |format|
-      if @category.update_attributes(params[:category])
-        format.html { redirect_to(@category, :notice => 'Category was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @category.update_attributes(params[:category])
+          format.html { redirect_to(@category, :notice => 'Category was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      redirect_to categories_url
     end
   end
   
   # DELETE /categories/1
   # DELETE /categories/1.xml
   def destroy
-    @category = Category.find(params[:id])
-    deleteSubCat(@category)
-    @category.destroy
+    if Category.find_by_id(params[:id])
+      @category = Category.find(params[:id])
+      deleteSubCat(@category)
+      @category.destroy
     
-    respond_to do |format|
-      format.html { redirect_to(categories_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(categories_url) }
+        format.xml  { head :ok }
+      end
+    else
+      redirect_to categories_url
     end
   end
   

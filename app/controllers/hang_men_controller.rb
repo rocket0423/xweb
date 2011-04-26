@@ -37,7 +37,11 @@ class HangMenController < ApplicationController
 
   # GET /hang_men/1/edit
   def edit
-    @hang_man = HangMan.find(params[:id])
+    if HangMan.find_by_id(params[:id])
+      @hang_man = HangMan.find(params[:id])
+    else
+      redirect_to hang_men_url
+    end
   end
 
   # POST /hang_men
@@ -59,29 +63,37 @@ class HangMenController < ApplicationController
   # PUT /hang_men/1
   # PUT /hang_men/1.xml
   def update
-    @hang_man = HangMan.find(params[:id])
+    if HangMan.find_by_id(params[:id])
+      @hang_man = HangMan.find(params[:id])
 
-    respond_to do |format|
-      if @hang_man.update_attributes(params[:hang_man])
-        format.html { redirect_to(@hang_man, :notice => 'Hang man was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @hang_man.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @hang_man.update_attributes(params[:hang_man])
+          format.html { redirect_to(@hang_man, :notice => 'Hang man was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @hang_man.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      redirect_to hang_men_url
     end
   end
 
   # DELETE /hang_men/1
   # DELETE /hang_men/1.xml
   def destroy
-    @hang_man = HangMan.find(params[:id])
-    deleteUserAccess(@hang_man)
-    @hang_man.destroy
+    if HangMan.find_by_id(params[:id])
+      @hang_man = HangMan.find(params[:id])
+      deleteUserAccess(@hang_man)
+      @hang_man.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(hang_men_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(hang_men_url) }
+        format.xml  { head :ok }
+      end
+    else
+      redirect_to hang_men_url
     end
   end
   

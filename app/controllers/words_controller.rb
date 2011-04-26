@@ -39,7 +39,11 @@ class WordsController < ApplicationController
   
   # GET /words/1/edit
   def edit
-    @word = Word.find(params[:id])
+    if Word.find_by_id(params[:id])
+      @word = Word.find(params[:id])
+    else
+      redirect_to words_url
+    end
   end
   
   # POST /words
@@ -95,63 +99,72 @@ class WordsController < ApplicationController
   # PUT /words/1
   # PUT /words/1.xml
   def update
-    @word = Word.find(params[:id])
-    letters = "abcdefghijklmnopqrstuvwxyz"
-    letters_up = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    correctLetters = "111111111111111111111111111"
-    numberLetter=0
-    numberUnique=0
-    j=0
-    #loop to determine what letters are in the word modifing correctLetters
-    #array with 0 for letters that are in the word
-    while j<@word.word.length do
-      i = 0
-      while i < correctLetters.length  do
-        if @word.word[j] == letters[i] || @word.word[j] == letters_up[i]
-          if correctLetters[i] != "0"
-            correctLetters[i]="0"
-            numberUnique +=1
+    if Word.find_by_id(params[:id])
+      @word = Word.find(params[:id])
+      @word2 = Word.new(params[:word])
+      letters = "abcdefghijklmnopqrstuvwxyz"
+      letters_up = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      correctLetters = "111111111111111111111111111"
+      numberLetter=0
+      numberUnique=0
+      j=0
+      #loop to determine what letters are in the word modifing correctLetters
+      #array with 0 for letters that are in the word
+      while j<@word2.word.length do
+        i = 0
+        while i < correctLetters.length  do
+          if @word2.word[j] == letters[i] || @word2.word[j] == letters_up[i]
+            if correctLetters[i] != "0"
+              correctLetters[i]="0"
+              numberUnique +=1
+            end
+            numberLetter +=1
+            i = correctLetters.length
           end
-          numberLetter +=1
-          i = correctLetters.length
+          i +=1
         end
-        i +=1
+        j +=1
       end
-      j +=1
-    end
     
-    respond_to do |format|
-      #determine if no letters in word throw error if no letters
-      if numberUnique == 0
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
-      else
-        if @word.update_attributes(params[:word])
-          #determine score for each word
-          @word.button_score = ((1000*numberUnique)/(numberLetter*6*(21-numberUnique)))
-          @word.points = (1000/(numberUnique*numberLetter))
-          @word.letter_seq = correctLetters
-          @word.save
-          format.html { redirect_to(@word, :notice => 'Word was successfully updated.') }
-          format.xml  { head :ok }
-        else
+      respond_to do |format|
+        #determine if no letters in word throw error if no letters
+        if numberUnique == 0
           format.html { render :action => "edit" }
           format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
+        else
+          if @word.update_attributes(params[:word])
+            #determine score for each word
+            @word.button_score = ((1000*numberUnique)/(numberLetter*6*(21-numberUnique)))
+            @word.points = (1000/(numberUnique*numberLetter))
+            @word.letter_seq = correctLetters
+            @word.save
+            format.html { redirect_to(@word, :notice => 'Word was successfully updated.') }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
+          end
         end
       end
+    else
+      redirect_to words_url
     end
   end
   
   # DELETE /words/1
   # DELETE /words/1.xml
   def destroy
-    @word = Word.find(params[:id])
-    deleteUserAccess(@word)
-    @word.destroy
+    if Word.find_by_id(params[:id])
+      @word = Word.find(params[:id])
+      deleteUserAccess(@word)
+      @word.destroy
     
-    respond_to do |format|
-      format.html { redirect_to(words_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(words_url) }
+        format.xml  { head :ok }
+      end
+    else
+      redirect_to words_url
     end
   end
   

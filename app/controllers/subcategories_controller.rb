@@ -3,8 +3,8 @@ class SubcategoriesController < ApplicationController
   # GET /subcategories.xml
   def index
     @subcategories = Subcategory.all
-    @sub_by_cat = Subcategory.find_all_by_categories_id(params[:myCat])
-    
+    @sub_by_cat = Subcategory.find_all_by_categories_id(params[:myCat]);
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @subcategories }
@@ -38,7 +38,11 @@ class SubcategoriesController < ApplicationController
 
   # GET /subcategories/1/edit
   def edit
-    @subcategory = Subcategory.find(params[:id])
+    if Subcategory.find_by_id(params[:id])
+      @subcategory = Subcategory.find(params[:id])
+    else
+      redirect_to subcategories_url
+    end
   end
 
   # POST /subcategories
@@ -60,33 +64,41 @@ class SubcategoriesController < ApplicationController
   # PUT /subcategories/1
   # PUT /subcategories/1.xml
   def update
-    @subcategory = Subcategory.find(params[:id])
+    if Subcategory.find_by_id(params[:id])
+      @subcategory = Subcategory.find(params[:id])
 
-    respond_to do |format|
-      if @subcategory.update_attributes(params[:subcategory])
-        format.html { redirect_to(@subcategory, :notice => 'Subcategory was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @subcategory.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @subcategory.update_attributes(params[:subcategory])
+          format.html { redirect_to(@subcategory, :notice => 'Subcategory was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @subcategory.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      redirect_to subcategories_url
     end
   end
 
   # DELETE /subcategories/1
   # DELETE /subcategories/1.xml
   def destroy
-    @subcategory = Subcategory.find(params[:id])
-    deleteWord(@subcategory)
-    @subcategory.destroy
+    if Subcategory.find_by_id(params[:id])
+      @subcategory = Subcategory.find(params[:id])
+      deleteWord(@subcategory)
+      @subcategory.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(subcategories_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(subcategories_url) }
+        format.xml  { head :ok }
+      end
+    else
+      redirect_to subcategories_url
     end
   end
   
-    def deleteWord(subcat)
+  def deleteWord(subcat)
     @words_by_sub = Word.find_all_by_subcategories_id(subcat.id);
     @words_by_sub.each do |subcat1|
       deleteUserAccess(subcat1)

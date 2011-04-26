@@ -43,7 +43,11 @@ class UsersController < ApplicationController
   
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    if User.find_by_id(params[:id])
+      @user = User.find(params[:id])
+    else
+      redirect_to users_url
+    end
   end
   
   # POST /users
@@ -78,54 +82,62 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
-    if @user.administrator && User.find_all_by_administrator(true).count==1
-      respond_to do |format|
-        if @user.update_attributes(params[:user])
-          @user.administrator = true
-          @user.save
-          format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-          format.xml  { head :ok }
-        else
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+    if User.find_by_id(params[:id])
+      @user = User.find(params[:id])
+      if @user.administrator && User.find_all_by_administrator(true).count==1
+        respond_to do |format|
+          if @user.update_attributes(params[:user])
+            @user.administrator = true
+            @user.save
+            format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+          end
         end
+      else
+        respond_to do |format|
+          if @user.update_attributes(params[:user])
+            format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+          end
+        end  
       end
     else
-      respond_to do |format|
-        if @user.update_attributes(params[:user])
-          format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-          format.xml  { head :ok }
-        else
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        end
-      end
+      redirect_to users_url
     end
   end
   
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
-    @user2 = User.find(session[:user_id])
-    if @user == @user2
-      if User.find_all_by_administrator(true).count==1
-        respond_to do |format|
-          format.html { redirect_to(users_url, :notice => 'Unable to delete last admin') }
-          format.xml  { head :ok }
+    if User.find_by_id(params[:id])
+      @user = User.find(params[:id])
+      @user2 = User.find(session[:user_id])
+      if @user == @user2
+        if User.find_all_by_administrator(true).count==1
+          respond_to do |format|
+            format.html { redirect_to(users_url, :notice => 'Unable to delete last admin') }
+            format.xml  { head :ok }
+          end
+        else
+          @user.destroy
+          session[:user_id] = nil
+          redirect_to login_url, :notice => "Deleted Account"
         end
       else
         @user.destroy
-        session[:user_id] = nil
-        redirect_to login_url, :notice => "Deleted Account"
+        respond_to do |format|
+          format.html { redirect_to(users_url, :notice => 'User was successfully deleted') }
+          format.xml  { head :ok }
+        end
       end
     else
-      @user.destroy
-      respond_to do |format|
-        format.html { redirect_to(users_url, :notice => 'User was successfully deleted') }
-        format.xml  { head :ok }
-      end
+      redirect_to users_url
     end
   end
   
