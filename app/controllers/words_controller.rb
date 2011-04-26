@@ -15,11 +15,14 @@ class WordsController < ApplicationController
   # GET /words/1
   # GET /words/1.xml
   def show
-    @word = Word.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @word }
+    if Word.find_by_id(params[:id])
+      @word = Word.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @word }
+      end
+    else
+      redirect_to words_url
     end
   end
   
@@ -143,6 +146,7 @@ class WordsController < ApplicationController
   # DELETE /words/1.xml
   def destroy
     @word = Word.find(params[:id])
+    deleteUserAccess(@word)
     @word.destroy
     
     respond_to do |format|
@@ -150,4 +154,16 @@ class WordsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def deleteUserAccess(word)
+    @user_by_word = User.find_all_by_word_id(word.id);
+    @user_by_word.each do |word1|
+       word1.active = nil
+       word1.active = nil
+       word1.hangman_id = nil
+       word1.word_id = nil
+       word1.save
+    end
+  end
+  
 end

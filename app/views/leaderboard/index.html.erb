@@ -2,32 +2,22 @@
 <img id="animation" src="../images/celebration-animation.gif" align="right">
 <table align="left">
     <tr align="center">
-        <th>
-            User
-        </th>
-        <th>
-            Score
-        </th>
+        <th>User</th>
+        <th>Score</th>
     </tr>
 	<!-- List leaders in a row for each -->
     <% @leaders.each do |leaders| %>
     <tr align="center">
-        <td>
-            <%= leaders.name %>
-        </td>
-        <td>
-            <%= leaders.score %>
-        </td>
+        <td><%= leaders.name %></td>
+        <td><%= leaders.score %></td>
     </tr>
     <% end %>
     <tr align="center">
         <td>
-        	<br />
-			<br />
+        	<br /><br />
+			<!-- Back to main page -->
             <form action='leaderboard' method='post'>
-                <button name= 'buttonClicked' type='submit'>
-                    Home
-                </button>
+                <button name= 'buttonClicked' type='submit'>Home</button>
             </form>
         </td>
     </tr>

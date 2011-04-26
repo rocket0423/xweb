@@ -7,11 +7,7 @@ class GameController < ApplicationController
     @user = User.find(session[:user_id])
     # makes sure all values are there before starting a game
     if(@user.word_id==nil || @user.active==nil || @user.hangman_id==nil)
-      @user.active = nil
-      @user.word_id = nil
-      @user.hangman_id = nil
-      @user.save
-      redirect_to player_url
+      resetUser(@user)
     else
       # set up of final game
       @getWord = Word.find(@user.word_id)
@@ -36,11 +32,7 @@ class GameController < ApplicationController
     @user = User.find(session[:user_id])
     #make sure values are there before continuing with modifications
     if(@user.word_id==nil || @user.active==nil || @user.hangman_id==nil)
-      @user.active = nil
-      @user.word_id = nil
-      @user.hangman_id = nil
-      @user.save
-      redirect_to player_url
+      resetUser(@user)
     else
       clicked = params[:buttonClicked].to_i
       @word = Word.find(@user.word_id)
@@ -93,12 +85,7 @@ class GameController < ApplicationController
                 end
               end
               # reset all user values
-              @user.active = nil
-              @user.active2 = nil
-              @user.word_id = nil
-              @user.hangman_id = nil
-              @user.save
-              redirect_to player_url
+              resetUser(@user)
             else
               # not recognized button go back to game
               redirect_to game_url
@@ -107,5 +94,15 @@ class GameController < ApplicationController
         end
       end
     end  
+  end
+  
+  # reset all user values
+  def resetUser(user)
+    user.active = nil
+    user.active2 = nil
+    user.word_id = nil
+    user.hangman_id = nil
+    user.save
+    redirect_to player_url
   end
 end

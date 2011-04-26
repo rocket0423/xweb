@@ -13,11 +13,14 @@ class HangMenController < ApplicationController
   # GET /hang_men/1
   # GET /hang_men/1.xml
   def show
-    @hang_man = HangMan.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @hang_man }
+    if HangMan.find_by_id(params[:id])
+      @hang_man = HangMan.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @hang_man }
+      end
+    else
+      redirect_to hang_men_url
     end
   end
 
@@ -73,6 +76,7 @@ class HangMenController < ApplicationController
   # DELETE /hang_men/1.xml
   def destroy
     @hang_man = HangMan.find(params[:id])
+    deleteUserAccess(@hang_man)
     @hang_man.destroy
 
     respond_to do |format|
@@ -80,4 +84,16 @@ class HangMenController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+   def deleteUserAccess(word)
+    @user_by_word = User.find_all_by_hangman_id(word.id);
+    @user_by_word.each do |word1|
+       word1.active = nil
+       word1.active = nil
+       word1.hangman_id = nil
+       word1.word_id = nil
+       word1.save
+    end
+  end
+  
 end

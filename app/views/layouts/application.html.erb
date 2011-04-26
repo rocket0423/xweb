@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Code shown on all pages -->
 <html>
     <head>
         <title>Xweb</title>
@@ -7,9 +8,10 @@
         <%= csrf_meta_tag %>
     </head>
     <body id="">
+    	<!-- Top Banner of page with name username score and picture -->
         <div id="banner">
             <img src = "/images/wallpaper-400.gif" width = "60" height = "45" alt = "hangman" />
-            <%= @page_title || "Hangman" %><!-- <label id="code.depot.e.title"/> -->
+            <%= @page_title || "Hangman" %>
 			<% if session[:user_id] %>
 			<p>
             	<!-- Display of username and points -->
@@ -20,85 +22,50 @@
             <% end %>
             
         </div>
+		<!-- Side column with links to each main page of each table -->
         <div id="columns">
             <div id="side">
                 <% if session[:user_id] %>
+				<!-- Administraror links plus standard links -->
                 <% if User.find(session[:user_id]).administrator %>
                 <br/>
                 <%= link_to 'Users', users_path %>
-                <br/>
-                <br/>
+                <br/><br/>
                 <%= link_to 'Categories', categories_path %>
-                <br/>
-                <br/>
+                <br/><br/>
                 <%= link_to 'HangMen', hang_men_path %>
-                <br/>
-                <br/>
+                <br/><br/>
                 <%= link_to 'SubCategories', subcategories_path %>
-                <br/>
-                <br/>
+                <br/><br/>
                 <%= link_to 'Words', words_path %>
-                <br/>
-                <br/>
+                <br/><br/>
                 <%= link_to 'Admin', admin_path %>
                 <br/>
                 <% end %>
+				<!-- Standard User Links on side Panel -->
                 <br/>
                 <%= link_to 'Home', player_path %>
-                <br/>
-                <br/>
+                <br/><br/>
 				<%= link_to 'Current Game', game_path %>
-                <br/>
-                <br/>
+                <br/><br/>
 				<%= link_to 'LeaderBoard', leaderboard_path %>
-                <br/>
-                <br/>
+                <br/><br/>
                 <%= button_to 'Logout', logout_path, :method => :delete %>
                 <br/>
                 <%= button_to 'Delete Account', users_path,:confirm => 'Are you sure?', :method => :delete %>
-                <br/>
-                <br/>
-                <br/>
+                <br/><br/><br/>
                 <% if !User.find(session[:user_id]).administrator %>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <% end %>
                 <% end %>
+				<!-- Keep sidebar certain length to make viewing easier -->
                 <% if !session[:user_id] %>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/>
                 <% end %>
             </div>
+			<!-- Main area for standard pages -->
             <div id="main">
                 <%= yield %>
             </div>

@@ -14,11 +14,14 @@ class SubcategoriesController < ApplicationController
   # GET /subcategories/1
   # GET /subcategories/1.xml
   def show
-    @subcategory = Subcategory.find(params[:id])
-
-    respond_to do |format|
-      format.html # list.html.erb
-      format.xml  { render :xml => @subcategory }
+    if Subcategory.find_by_id(params[:id])
+      @subcategory = Subcategory.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @subcategory }
+      end
+    else
+      redirect_to subcategories_url
     end
   end
 
@@ -74,6 +77,7 @@ class SubcategoriesController < ApplicationController
   # DELETE /subcategories/1.xml
   def destroy
     @subcategory = Subcategory.find(params[:id])
+    deleteWord(@subcategory)
     @subcategory.destroy
 
     respond_to do |format|
@@ -81,4 +85,24 @@ class SubcategoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+    def deleteWord(subcat)
+    @words_by_sub = Word.find_all_by_subcategories_id(subcat.id);
+    @words_by_sub.each do |subcat1|
+      deleteUserAccess(subcat1)
+      subcat1.destroy
+    end
+  end
+  
+  def deleteUserAccess(word)
+    @user_by_word = User.find_all_by_word_id(word.id);
+    @user_by_word.each do |word1|
+       word1.active = nil
+       word1.active = nil
+       word1.hangman_id = nil
+       word1.word_id = nil
+       word1.save
+    end
+  end
+  
 end

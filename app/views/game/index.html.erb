@@ -10,19 +10,14 @@
                         <img id="myImage" alt = "HangMan" width="150" height="200" />
                     </td>
                     <td>
-                        <button id="hint" name= 'buttonClicked' type='submit' value="26">
-                            Hint
-                        </button>
+                        <button id="hint" name= 'buttonClicked' type='submit' value="26">Hint</button>
                         <br/>
-                        <p id="hintPhrase">
-                        </p>
+                        <p id="hintPhrase"></p>
                     </td>
                 </tr>
             </table>
         </form>
-        <br/>
-        <br/>
-        <br/>
+        <br/><br/><br/>
         <script type="text/javascript">
         	//Script creates letter buttons, determines if letter selections are contained in the word,
 			//shows deciphered letters and underscores for undeciphered letters, deactivates selected letter buttons,
@@ -33,6 +28,8 @@
             var active = "<%= @user.active %>"
             var incorrectLetters = 1
             var complete = true;
+			
+			//Determine if word is complete or used up all choices 
             for (var h = 0; h < letters.length; h++) {
                 if (active[h] == 0) {
                     var found = false
@@ -49,19 +46,20 @@
             if (incorrectLetters >= 7) {
                 active = "000000000000000000000000000"
             }
+			
+			//Display Each letter that was selected and spaces for unselected letters
             document.write("<div id='hang'>")
             for (var j = 0; j < word.length; j++) {
                 if (word[j] == " ") {
                     document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-                }
-                else {
-                    for (var k = 0; k < letters.length; k++) {
+                } else {
+               		for (var k = 0; k < letters.length; k++) {
                         if (word[j] == letters[k] || word[j] == lowerLetters[k]) {
                             if (active[k] == 0) {
                                 document.write(word[j])
-                            }
-                            else {
+                            } else {
                                 document.write("_ ")
+								// One letter left remaining
                                 complete = false
                             }
                         }
@@ -70,6 +68,8 @@
                 }
             }
             document.write("</div>")
+			
+			//If Word was solved
             if (complete) {
                 //Puzzle solved
 				active = "000000000000000000000000000"
@@ -79,12 +79,13 @@
             document.write("<br />")
             document.write("<br />")
             document.write("<br />")
+			
+			//Buttons that are active and inactive
             document.write("<form action='game' method='post'>")
             for (var i = 0; i < letters.length; i++) {
                 if (active[i] == "0") {
                     document.write("<button name= 'buttonClicked' type='submit' value=" + i + " style='width: 35px; height: 25px' disabled='disabled'>" + letters[i] + "</button>")
-                }
-                else {
+                } else {
                     document.write("<button name= 'buttonClicked' type='submit' value=" + i + " style='width: 35px; height: 25px'>" + letters[i] + "</button>")
                 }
                 if (((i + 1) % 13) == 0) {
@@ -96,56 +97,40 @@
                 document.getElementById("hint").disabled = 'disabled'
                 document.getElementById("hintPhrase").innerHTML = "<%= @word.hint %>"
             }
-            
             document.write("</form>")
-            if (incorrectLetters == 1) {
+            
+			//Current Image Choice
+			if (incorrectLetters == 1) {
                 //No mistakes yet, display empty gallows
 				document.getElementById("myImage").src = " <%= @hang.hang1_url %> "
-            }
-            else 
+            } else if (incorrectLetters == 2) {
 				//First mistake, display head
-                if (incorrectLetters == 2) {
-                    document.getElementById("myImage").src = " <%= @hang.hang2_url %> "
-                }
-                else 
-                    //Second mistake, display body
-					if (incorrectLetters == 3) {
-                        document.getElementById("myImage").src = " <%= @hang.hang3_url %> "
-                    }
-                    else 
-						//Third mistake, display arm
-                        if (incorrectLetters == 4) {
-                            document.getElementById("myImage").src = " <%= @hang.hang4_url %> "
-                        }
-                        else 
-                            if (incorrectLetters == 5) {
-                                //Fourth mistake, display other arm
-								document.getElementById("myImage").src = " <%= @hang.hang5_url %> "
-                            }
-                            else 
-                                if (incorrectLetters == 6) {
-									//Fifth mistake, display leg
-                                    document.getElementById("myImage").src = " <%= @hang.hang6_url %> "
-                                }
-                                else {
-									//Sixth mistake, display other leg
-                                    document.getElementById("myImage").src = " <%= @hang.hang7_url %> "
-									//Wait 2 seconds and display game over animation
-									setTimeout("document.getElementById('myImage').src = '../images/gameover.gif'", 2000);
-                                }
+                document.getElementById("myImage").src = " <%= @hang.hang2_url %> "
+            } else if (incorrectLetters == 3) {
+				//Second mistake, display body
+                document.getElementById("myImage").src = " <%= @hang.hang3_url %> "
+            } else if (incorrectLetters == 4) {
+				//Third mistake, display arm
+               	document.getElementById("myImage").src = " <%= @hang.hang4_url %> "
+           	} else if (incorrectLetters == 5) {
+            	//Fourth mistake, display other arm
+				document.getElementById("myImage").src = " <%= @hang.hang5_url %> "
+          	} else if (incorrectLetters == 6) {
+				//Fifth mistake, display leg
+              	document.getElementById("myImage").src = " <%= @hang.hang6_url %> "
+           	} else {
+				//Sixth mistake, display other leg
+              	document.getElementById("myImage").src = " <%= @hang.hang7_url %> "
+				//Wait 2 seconds and display game over animation
+				setTimeout("document.getElementById('myImage').src = '../images/gameover.gif'", 2000);
+         	}
         </script>
         <br/>
         <br/>
         <form action='game' method='post'>
-            <button name= 'buttonClicked' type='submit' value="29">
-                Home
-            </button>
-            <button name= 'buttonClicked' type='submit' value="27">
-                New Game
-            </button>
-            <button name= 'buttonClicked' type='submit' value="28">
-                Leader Board
-            </button>
+            <button name= 'buttonClicked' type='submit' value="29">Home</button>
+            <button name= 'buttonClicked' type='submit' value="27">New Game</button>
+            <button name= 'buttonClicked' type='submit' value="28">Leader Board</button>
         </form>
     </body>
 </html>

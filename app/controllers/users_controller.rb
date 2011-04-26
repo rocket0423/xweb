@@ -15,11 +15,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
+    if User.find_by_id(params[:id])
+      @user = User.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @user }
+      end
+    else
+      redirect_to users_url
     end
   end
   

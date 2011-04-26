@@ -14,6 +14,7 @@
                 selectbox.options.add(optn);
             }
             
+			//Initalize the combo boxes
             function addOption_list(){
                 //document.write( " <% Category.all.each do |category| %> " )
                 addOption(document.drop_list.Cat, "<%= category.category %>", "<%= category.id %>");
@@ -56,6 +57,7 @@
                 }
             }
             
+			//What to do when the Hangman is selected
             function selHangMan(){
                 var hang1 = document.getElementById("HangMan")
                 var hangI = hang1.selectedIndex
@@ -77,31 +79,22 @@
         <FORM name="drop_list" action="player" method="post">
         <table width="700px">
             <tr align="center">
-                <th>
-                    Select a Category
-                </th>
-                <th>
-                    Select a SubCategory
-                </th>
-                <th>
-                    Select a HangMan
-                </th>
+                <th>Select a Category</th>
+                <th>Select a SubCategory</th>
+                <th>Select a HangMan</th>
             </tr>
             <tr align="center">
                 <td>
                 	<!-- listbox for categories -->
-                    <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();">
-                    </SELECT>
+                    <SELECT id="Cat" NAME="Cat" MULTIPLE size='6' width='30' onchange="selCat();"></SELECT>
                 </td>
                 <td>
                 	<!-- listbox for subcategories -->
-                    <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();">
-                    </SELECT>
+                    <SELECT id="SubCat" NAME="SubCat" MULTIPLE size=6  width=10  onchange="selSubCat();"></SELECT>
                 </td>
                 <td>
                 	<!-- listbox for hangman images -->
-                    <SELECT id="HangMan" NAME="HangMan" MULTIPLE size=6  width=10  onchange="selHangMan();">
-                    </SELECT>
+                    <SELECT id="HangMan" NAME="HangMan" MULTIPLE size=6  width=10  onchange="selHangMan();"></SELECT>
                 </td>
                 <td width="100">
                 	<!-- Preview for Hangman graphics to use -->
@@ -110,25 +103,16 @@
             </tr>
 			<tr align="center">
 				<td>
-					<br />
-					<br />
-					<button id='Selection' name= 'SubmitChoice' type='submit' value ='1' disabled='disabled'>
-						Play New Game
-					</button>
+					<br /><br />
+					<button id='Selection' name= 'SubmitChoice' type='submit' value ='1' disabled='disabled'>Play New Game</button>
 				</td>
 				<td>
-					<br />
-					<br />
-					<button id='PrevGame' name= 'PrevGame' type='submit' value ='2'>
-            			Continue Previous Game
-        			</button>
+					<br /><br />
+					<button id='PrevGame' name= 'PrevGame' type='submit' value ='2'>Continue Previous Game</button>
 				</td>
 				<td>
-					<br />
-					<br />
-					<button id='LeaderBoard' name= 'LeaderBoard' type='submit' value ='3'>
-            			Leader Board
-        			</button>
+					<br /><br />
+					<button id='LeaderBoard' name= 'LeaderBoard' type='submit' value ='3'>Leader Board</button>
 				</td>
 			</tr>
         </table>     

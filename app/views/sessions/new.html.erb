@@ -3,6 +3,7 @@
     <p id="notice"><%= flash[:alert] %></p>
     <% end %>
     
+	<!-- Login Page -->
 	<%= form_tag do %>
     <fieldset  style="width: 400px;">
         <legend>Please Log In</legend>
@@ -19,10 +20,10 @@
 		
         <div>
             <%= submit_tag "Login" %>
-			
         </div>
     </fieldset>
 	<% end %>
+	<!-- Create a new user -->
 	<form action='users/new' method='get'>
 		<button type='submit' >New User</button>		
 	</form>
