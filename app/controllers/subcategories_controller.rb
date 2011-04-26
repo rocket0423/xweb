@@ -3,8 +3,8 @@ class SubcategoriesController < ApplicationController
   # GET /subcategories.xml
   def index
     @subcategories = Subcategory.all
-    @sub_by_cat = Subcategory.find_all_by_categories_id(params[:myCat]);
-
+    @sub_by_cat = Subcategory.find_all_by_categories_id(params[:myCat])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @subcategories }
