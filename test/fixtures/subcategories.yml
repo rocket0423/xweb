@@ -1,9 +1,1 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  categories_id: categories(:one).id
-  subcategory: Action
-
-two:
-  categories_id: categories(:one).id
-  subcategory: MyString

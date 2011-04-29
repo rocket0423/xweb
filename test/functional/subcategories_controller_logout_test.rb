@@ -1,27 +1,19 @@
 require 'test_helper'
 
 class SubcategoriesControllerTest < ActionController::TestCase
-  setup do
-    @subcategory = subcategories(:one)
-    @update = {
-      :categories_id    => categories(:one).id,
-      :subcategory      => 'Wonderful'
-    }
-  end
-  
-  test "should get index " do
+  test "logout get index should redirect to login" do
     session.delete :user_id
     get :index
     assert_redirected_to login_url
   end
   
-  test "should get new logout" do
+  test "logout get new should redirect to login" do
     session.delete :user_id
     get :new
     assert_redirected_to login_url
   end
   
-  test "should create subcategory logout" do
+  test "logout create subcategory should redirect to login no create" do
     session.delete :user_id
     assert_difference('Subcategory.count',0) do
       post :create, :subcategory => @update
@@ -29,28 +21,28 @@ class SubcategoriesControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
   
-  test "should show subcategory logout" do
+  test "logout get show should redirect to login" do
     session.delete :user_id
-    get :show, :id => @subcategory.to_param
+    get :show, :id => @subcategory2.id
     assert_redirected_to login_url
   end
   
-  test "should get edit logout" do
+  test "logout get edit should redirect to login" do
     session.delete :user_id
-    get :edit, :id => @subcategory.to_param
+    get :edit, :id => @subcategory2.id
     assert_redirected_to login_url
   end
   
-  test "should update subcategory logout" do
+  test "logout put update should redirect to login" do
     session.delete :user_id
-    put :update, :id => @subcategory.to_param, :subcategory => @update
+    put :update, :id => @subcategory2.id, :subcategory => @update
     assert_redirected_to login_url
   end
   
-  test "should destroy subcategory logout" do
+  test "logout destroy subcategory should redirect to login with same count" do
     session.delete :user_id
     assert_difference('Subcategory.count', 0) do
-      delete :destroy, :id => @subcategory.to_param
+      delete :destroy, :id => @subcategory2.id
     end
     assert_redirected_to login_url
   end

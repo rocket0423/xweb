@@ -2,24 +2,28 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
   setup do
-    @category = categories(:one)
-    @update = {
-      :category    => 'Family'
+    @category = {
+      :category    => 'Movie'
     }
+    @update = {
+      :category    => 'Music'
+    }
+    @category2 = Category.new(@category)
+    @category2.save
   end
   
-  test "should get index admin" do
+  test "admin should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:categories)
   end
   
-  test "should get new admin" do
+  test "admin should get new" do
     get :new
     assert_response :success
   end
   
-  test "should create category admin" do
+  test "admin should create category" do
     assert_difference('Category.count') do
       post :create, :category => @update
     end
@@ -27,24 +31,24 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_redirected_to category_path(assigns(:category))
   end
   
-  test "should show category admin" do
-    get :show, :id => @category.to_param
+  test "admin should show category" do
+    get :show, :id => @category2.id
     assert_response :success
   end
   
-  test "should get edit admin" do
-    get :edit, :id => @category.to_param
+  test "admin should get edit" do
+    get :edit, :id => @category2.id
     assert_response :success
   end
   
-  test "should update category admin" do
-    put :update, :id => @category.to_param, :category => @update
+  test "admin should update category" do
+    put :update, :id => @category2.id, :category => @update
     assert_redirected_to category_path(assigns(:category))
   end
   
-  test "should destroy category admin" do
+  test "admin should destroy category" do
     assert_difference('Category.count', -1) do
-      delete :destroy, :id => @category.to_param
+      delete :destroy, :id => @category2.id
     end
     
     assert_redirected_to categories_path

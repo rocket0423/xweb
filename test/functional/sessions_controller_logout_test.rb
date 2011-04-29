@@ -1,13 +1,13 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase  
-  test "should get new logout" do
+  test "logout should get new" do
     session.delete :user_id
     get :new
     assert_response :success
   end
   
-  test "should login admin logout" do
+  test "logout should login admin" do
     session.delete :user_id
     dave = users(:one)
     post :create, :name => dave.name, :password => 'secret'
@@ -15,7 +15,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal dave.id, session[:user_id]
   end
   
-  test "should login std logout" do
+  test "logout should login std" do
     session.delete :user_id
     dave = users(:three)
     post :create, :name => dave.name, :password => 'secret'
@@ -23,14 +23,14 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal dave.id, session[:user_id]
   end
   
-  test "should fail login logout" do
+  test "logout should fail login" do
     session.delete :user_id
     dave = users(:one)
     post :create, :name => dave.name, :password => 'wrong'
     assert_redirected_to login_url
   end
   
-  test "should logout logout" do
+  test "logout should logout then redirect to login" do
     session.delete :user_id
     delete :destroy
     assert_redirected_to login_url

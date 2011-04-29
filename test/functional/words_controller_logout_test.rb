@@ -1,31 +1,19 @@
 require 'test_helper'
 
 class WordsControllerTest < ActionController::TestCase
-  setup do
-    @word = words(:one)
-    @update = {
-      :subcategories_id    => subcategories(:one).id,
-      :word                => 'Family',
-      :hint                => 'Family',
-      :points              => 10,
-      :button_score        => 10,
-      :letter_seq          => '111101111111010110111111111'
-    }
-  end
-  
-  test "should get index logout" do
+  test "logout get index should redirect to login" do
     session.delete :user_id
     get :index
     assert_redirected_to login_url
   end
   
-  test "should get new logout" do
+  test "logout get new should redirect to login" do
     session.delete :user_id
     get :new
     assert_redirected_to login_url
   end
   
-  test "should create word logout" do
+  test "logout word category should redirect to login no create" do
     session.delete :user_id
     assert_difference('Word.count',0) do
       post :create, :word => @update
@@ -33,28 +21,28 @@ class WordsControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
   
-  test "should show word logout" do
+  test "logout get show should redirect to login" do
     session.delete :user_id
-    get :show, :id => @word.to_param
+    get :show, :id => @word2.id
     assert_redirected_to login_url
   end
   
-  test "should get edit logout" do
+  test "logout get edit should redirect to login" do
     session.delete :user_id
-    get :edit, :id => @word.to_param
+    get :edit, :id => @word2.id
     assert_redirected_to login_url
   end
   
-  test "should update word logout" do
+  test "logout put update should redirect to login" do
     session.delete :user_id
-    put :update, :id => @word.to_param, :word => @update
+    put :update, :id => @word2.id, :word => @update
     assert_redirected_to login_url
   end
   
-  test "should destroy word logout" do
+  test "logout destroy word should redirect to login with same count" do
     session.delete :user_id
     assert_difference('Word.count', 0) do
-      delete :destroy, :id => @word.to_param
+      delete :destroy, :id => @word2.id
     end
     assert_redirected_to login_url
   end

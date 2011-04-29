@@ -2,25 +2,35 @@ require 'test_helper'
 
 class SubcategoriesControllerTest < ActionController::TestCase
   setup do
-    @subcategory = subcategories(:one)
-    @update = {
-      :categories_id    => categories(:one).id,
-      :subcategory      => 'Wonderful'
+    @category = {
+      :category    => 'Movie'
     }
+    @category2 = Category.new(@category)
+    @category2.save
+    @subcategory = {
+      :categories_id    => @category2.id,
+      :subcategory      => 'Action'
+    }
+    @update = {
+      :categories_id    => @category2.id,
+      :subcategory      => 'MyString'
+    }
+    @subcategory2 = Subcategory.new(@subcategory)
+    @subcategory2.save
   end
   
-  test "should get index admin" do
+  test "admin should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:subcategories)
   end
   
-  test "should get new admin" do
+  test "admin should get new" do
     get :new
     assert_response :success
   end
   
-  test "should create subcategory admin" do
+  test "admin should create subcategory" do
     assert_difference('Subcategory.count') do
       post :create, :subcategory => @update
     end
@@ -28,24 +38,24 @@ class SubcategoriesControllerTest < ActionController::TestCase
     assert_redirected_to subcategory_path(assigns(:subcategory))
   end
   
-  test "should show subcategory admin" do
-    get :show, :id => @subcategory.to_param
+  test "admin should show subcategory" do
+    get :show, :id => @subcategory2.id
     assert_response :success
   end
   
-  test "should get edit admin" do
-    get :edit, :id => @subcategory.to_param
+  test "admin should get edit" do
+    get :edit, :id => @subcategory2.id
     assert_response :success
   end
   
-  test "should update subcategory admin" do
-    put :update, :id => @subcategory.to_param, :subcategory => @update
+  test "admin should update subcategory" do
+    put :update, :id => @subcategory2.id, :subcategory => @update
     assert_redirected_to subcategory_path(assigns(:subcategory))
   end
   
-  test "should destroy subcategory admin" do
+  test "admin should destroy subcategory" do
     assert_difference('Subcategory.count', -1) do
-      delete :destroy, :id => @subcategory.to_param
+      delete :destroy, :id => @subcategory2.id
     end
     
     assert_redirected_to subcategories_path

@@ -1,33 +1,21 @@
 require 'test_helper'
 
 class WordsControllerTest < ActionController::TestCase
-  setup do
-    @word = words(:one)
-    @update = {
-      :subcategories_id    => subcategories(:one).id,
-      :word                => 'Family',
-      :hint                => 'Family',
-      :points              => 10,
-      :button_score        => 10,
-      :letter_seq          => '111101111111010110111111111'
-    }
-  end
-  
-  test "should get index std" do
+  test "std get index should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :index
     assert_redirected_to player_url
   end
   
-  test "should get new std" do
+  test "std get new should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :new
     assert_redirected_to player_url
   end
   
-  test "should create word std" do
+  test "std create world should redirect to player same count" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     assert_difference('Word.count',0) do
@@ -36,32 +24,32 @@ class WordsControllerTest < ActionController::TestCase
     assert_redirected_to player_url
   end
   
-  test "should show word std" do
+  test "std get show should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
-    get :show, :id => @word.to_param
+    get :show, :id => @word2.id
     assert_redirected_to player_url
   end
   
-  test "should get edit std" do
+  test "std get edit should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
-    get :edit, :id => @word.to_param
+    get :edit, :id => @word2.id
     assert_redirected_to player_url
   end
   
-  test "should update word std" do
+  test "std update word should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
-    put :update, :id => @word.to_param, :word => @update
+    put :update, :id => @word2.id, :word => @update
     assert_redirected_to player_url
   end
   
-  test "should destroy word std" do
+  test "std destroy category should redirect to player same count" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     assert_difference('Word.count', 0) do
-      delete :destroy, :id => @word.to_param
+      delete :destroy, :id => @word2.id
     end
     assert_redirected_to player_url
   end

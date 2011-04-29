@@ -1,14 +1,14 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase  
-  test "should get new std" do
+  test "std get new should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :new
     assert_redirected_to player_url
   end
   
-  test "should login std" do
+  test "std login should redirect to player no change" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     dave = users(:one)
@@ -17,7 +17,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_not_equal dave.id, session[:user_id]
   end
   
-  test "should logout std" do
+  test "std should logout then redirect to login" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     delete :destroy

@@ -6,39 +6,24 @@ one:
   salt: <%= SALT %>
   administrator: true
   score: 0
-
+  
 two:
-  name: MyString
-  hashed_password: MyString
-  salt: MyString
+  name: daes
+  hashed_password: <%= User.encrypt_password('secret', SALT) %>
+  salt: <%= SALT %>
   administrator: true
   score: 0
-
+  
 three:
-  name: Justin
+  name: justin
   hashed_password: <%= User.encrypt_password('secret', SALT) %>
   salt: <%= SALT %>
   administrator: false
   score: 0
   
 four:
-  name: Justins
+  name: justins
   hashed_password: <%= User.encrypt_password('secret', SALT) %>
   salt: <%= SALT %>
   administrator: false
-  active: 111111111111111111111111111
-  active2: 111111111111111111111111111
-  hangman_id: hang_men(:one).id
-  word_id: words(:one).id
-  score: 0
-  
-five:
-  name: daves
-  hashed_password: <%= User.encrypt_password('secret', SALT) %>
-  salt: <%= SALT %>
-  administrator: true
-  active: 111111111111111111111111111
-  active2: 111111111111111111111111111
-  hangman_id: hang_men(:one).id
-  word_id: words(:one).id
   score: 0

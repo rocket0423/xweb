@@ -22,12 +22,12 @@ class PlayerControllerTest < ActionController::TestCase
     assert_redirected_to leaderboard_url
   end
   
-  test "should get choose3 std" do
-    session.delete :user_id
-    session[:user_id] = users(:three).id
-    post :choose, :SubmitChoice => "1" , :SubCat => words(:one).subcategories_id, :HangMan => hang_men(:one).id
-    assert_redirected_to game_url
-  end
+  #test "should get choose3 std" do
+  #  session.delete :user_id
+  #  session[:user_id] = users(:three).id
+  #  post :choose, :SubmitChoice => "1" , :SubCat => words(:one).subcategories_id, :HangMan => hang_men(:one).id
+  #  assert_redirected_to game_url
+  #end
   
   test "should go to game std" do
     session.delete :user_id

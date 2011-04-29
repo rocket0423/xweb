@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UpdatetablesControllerTest < ActionController::TestCase
-  test "should get update std" do
+  test "std get update should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :update

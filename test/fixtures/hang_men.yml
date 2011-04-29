@@ -2,20 +2,10 @@
 
 one:
   name: HangMe
-  hang1_url: Hangman1.jpg
-  hang2_url: Hangman2.jpg
-  hang3_url: Hangman3.jpg
-  hang4_url: Hangman4.jpg
-  hang5_url: Hangman5.jpg
-  hang6_url: Hangman6.jpg
-  hang7_url: Hangman7.jpg
-
-two:
-  name: MyString
-  hang1_url: MyString
-  hang2_url: MyString
-  hang3_url: MyString
-  hang4_url: MyString
-  hang5_url: MyString
-  hang6_url: MyString
-  hang7_url: MyString
+  hang1_url: /images/hangman1/533hangman-step1.jpg
+  hang2_url: /images/hangman1/533hangman-step2.jpg
+  hang3_url: /images/hangman1/533hangman-step3.jpg
+  hang4_url: /images/hangman1/533hangman-step4.jpg
+  hang5_url: /images/hangman1/533hangman-step5.jpg
+  hang6_url: /images/hangman1/533hangman-step6.jpg
+  hang7_url: /images/hangman1/533hangman-step7.jpg

@@ -1,32 +1,21 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  setup do
-    @input_attributes = {
-      :name                  => "sam",
-      :password              => "private",
-      :password_confirmation => "private",
-      :score                 => 0
-    }
-    
-    @user = users(:one)
-  end
-  
-  test "should get index std" do
+  test "std get index should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :index
     assert_redirected_to player_url
   end
   
-  test "should get new std" do
+  test "std get new should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :new
     assert_redirected_to player_url
   end
   
-  test "should create user std" do
+  test "std create user should redirect to player same count" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     assert_difference('User.count',0) do
@@ -35,28 +24,28 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to player_url
   end
   
-  test "should show user std" do
+  test "std get show should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :show, :id => @user.to_param
     assert_redirected_to player_url
   end
   
-  test "should get edit std" do
+  test "std get edit should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     get :edit, :id => @user.to_param
     assert_redirected_to player_url
   end
   
-  test "should update user std" do
+  test "std update user should redirect to player" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     put :update, :id => @user.to_param, :user => @input_attributes
     assert_redirected_to player_url
   end
   
-  test "should destroy user std" do
+  test "std destroy user should redirect to player same count" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     assert_difference('User.count', 0) do
@@ -65,7 +54,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to player_url
   end
   
-  test "should destroy self std" do
+  test "std should destroy self then redirect to login" do
     session.delete :user_id
     session[:user_id] = users(:three).id
     assert_difference('User.count', -1) do
